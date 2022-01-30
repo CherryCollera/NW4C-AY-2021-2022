@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "90267080922",
+    "firebase_url": "https://u-near-me-457b8-default-rtdb.firebaseio.com",
+    "project_id": "u-near-me-457b8",
+    "storage_bucket": "u-near-me-457b8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90267080922:android:25cc8441184303260cede3",
+        "android_client_info": {
+          "package_name": "com.example.unearme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90267080922-0cjucdsmvd9lcetimddbr2549pv5n6q3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeiC5esAsngMW4zLUgf8wSaLR9SDh5vvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90267080922-0cjucdsmvd9lcetimddbr2549pv5n6q3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

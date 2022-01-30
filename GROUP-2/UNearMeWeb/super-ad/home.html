@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U-Near Me</title>
+
+    <!-- Link to Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/2618f471eb.js" crossorigin="anonymous"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;700&display=swap');
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: 'Readex Pro', sans-serif;
+        }
+        body{
+            min-height: 100vh;
+            background-color: #fff;
+        }
+        .navbar{
+            width: 250px;
+            height: 100%;
+            position: fixed;
+            margin-left: -300px;
+            background-color: rgba(92, 203, 255);
+            transition: 0.4s;
+        }
+        .nav-link{
+            font-size: 1.25rem;
+        }
+        .nav-link:active,
+        .nav-link:focus,
+        .nav-link:hover{
+            background-color: rgb(72, 183, 235);
+        }
+        #content{
+            transition: 0.4s;
+        }
+
+        #sidebar.active {
+            margin-left: 0;
+        }
+        #content.active {
+            margin-left: 250px;
+        }
+        #sidebar ul li.active > a,
+        a[aria-expanded="true"] {
+        background-color: rgb(72, 183, 235);
+        
+        }
+        .btn-color{
+            background-color: rgb(62, 173, 225);
+            color: #ffffff;
+        }
+  </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand d-flex flex-column align-item-start active p-2" id="sidebar">
+        <a href="#" class="navbar-brand text-light mt-5">
+            <div class="display-6 font-weight-bold">UNEARME</div>
+        </a>
+        <ul class="navbar-nav d-flex flex-column mt-5 w-100">
+            <li class="nav-item w-100 active">
+                <a href="#" class="nav-link text-light ps-4">Request</a>
+            </li>
+            <li class="nav-item w-100 ">
+                <a href="user-feedbacks.html" class="nav-link text-light ps-4">Users Report</a>
+            </li>
+            <!-- <li class="nav-item w-100">
+                <a href="#" class="nav-link text-light ps-4">Dashboard</a>
+            </li>
+            <li class="nav-item w-100">
+                <a href="#" class="nav-link text-light ps-4">Dashboard</a>
+            </li> -->
+        </ul>
+    </nav>
+   <section class="p-5 active" id="content">
+       <button type="button" class="btn btn-color my-4" id="toggleSidebar"><i class="fas fa-bars"></i> </button>
+       <div class="card">
+           <div class="card-body" style="background-color: rgba(92, 203, 255);">
+               <h4> <strong>Requests</strong></h4>
+           </div>
+       </div>
+       <div id="requestsContainer" style="margin-top: 1rem;"></div>
+
+
+       <div class="modal fade" tabindex="-1" id="acceptModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Accept</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Accept <span id="name"></span> as School Admin?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="acceptRequestBtn">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" id="declineModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Decline</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Decline <span id="name"></span> as School Admin?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="declineRequestBtn">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </section>
+   
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-storage.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that yosu want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js"></script>
+
+    <!-- Link to firebase config -->
+    <script type="text/javascript" src="/script/firebase-config.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
+    crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        
+        $('#toggleSidebar').on('click', function() {
+            $('#sidebar').toggleClass('active');
+            $('#content').toggleClass('active');
+        });
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+        // Firebase Authentication
+        auth.onAuthStateChanged(function(user) {
+            if(user){
+                db.collection('super_admin').doc(user.uid).get()
+            .then(super_admin =>{
+                if (!super_admin.exists) {
+                    
+                    window.location.assign("/index.html");
+                }
+            })
+            .catch(function (error) {
+                $(".loader").fadeOut()
+                window.alert("Error : " + error.message);
+            })
+            } else {
+              
+                //window.location.assign("/index.html");
+            }
+        });
+    });
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+        window.onload = loadRequests();
+        
+        function loadRequests() {
+            db.collection('school_admin').where('status', '==', 'pending').onSnapshot(function (snapshot) {
+                document.getElementById('requestsContainer').innerHTML = '';
+                if(!snapshot.empty){
+                    snapshot.forEach(function (taskValue) {
+                        document.getElementById('requestsContainer').innerHTML += `
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title"> ${taskValue.data().school_name}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">${taskValue.data().province}</h6>
+                                    <p class="card-text">${taskValue.data().name} <br> ${taskValue.data().email}  </p> <br>
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn btn-primary btn-sm" onclick="openInNewTab('${taskValue.data().document}');" >View Document</button>
+                                        <div>
+                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-todo='{"idb":"${taskValue.id}","emailb":"${taskValue.data().email}","nameb":"${taskValue.data().name}"}' data-bs-target="#declineModal" id="verifydecline">Decline</button>
+                                            <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-todo='{"ida":"${taskValue.id}","emaila":"${taskValue.data().email}","namea":"${taskValue.data().name}"}' data-bs-target="#acceptModal" id="verifyaccept" >Accept</button>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            `;
+                        })
+                } else {
+                    document.getElementById('requestsContainer').innerHTML += `
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title"> No Data Found</h5>
+                                </div>
+                            </div>
+                            `;
+                }
+            })
+            
+        }
+
+        var acceptname,acceptemail,acceptid, declinename,declineemail,declineid;
+        $(document).on('click', '#verifyaccept', function(){
+            acceptname = $(this).data('todo').namea;
+            acceptemail = $(this).data('todo').emaila;
+            acceptid = $(this).data('todo').ida;
+            $(".modal-body #name").text( acceptname );
+        })
+        $('#acceptRequestBtn').on('click', function(){
+           $('#acceptModal').modal('hide')
+           acceptRequest(acceptid, acceptemail)
+        })
+
+        
+        $(document).on('click', '#verifydecline', function(){
+            declinename = $(this).data('todo').nameb;
+            declineemail = $(this).data('todo').emailb;
+            declineid = $(this).data('todo').idb;
+            $(".modal-body #name").text( declinename );
+        })
+
+        $('#declineRequestBtn').on('click', function(){
+            $('#declineModal').modal('hide')
+            declineRequest(declineid, declineemail)
+        })
+
+        function openInNewTab(url) {
+            window.open(url, '_blank').focus();
+        }
+
+
+
+        function declineRequest(id, to_email){
+            db.collection('school_admin').doc(id).delete().then(()=>{
+                sendDecline(to_email);
+            })
+        }
+        function acceptRequest(id, to_email){
+            
+            db.collection('school_admin').doc(id).update
+            (
+                {
+                    status: "accepted"
+                }
+            ).then(()=>{
+               
+                sendEmail(to_email);
+            })
+        }
+
+        function sendEmail(to_email){
+            emailjs.send("service_mui39cj","template_iy04ysl", {
+                to_email: to_email
+            })
+            .then(() => {
+                
+              
+            }, (err) => {
+               
+                alert(JSON.stringify(err));
+            });
+        }
+        function sendDecline(to_email){
+            emailjs.send("service_c6zijbq","template_ul1wlt6", {
+                to_email: to_email
+            })
+            .then(() => {
+                
+              
+            }, (err) => {
+               
+                alert(JSON.stringify(err));
+            });
+        }
+
+
+        emailjs.init("user_OyTQDgaBF0NVNEeZmydTm");
+
+
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,230 @@
+<resources>
+    <string name="app_name">U Near Me</string>
+
+    <!--  FireStore Database Collections  -->
+    <string name="collection_students">students</string>
+    <string name="collection_school_admins">school_admins</string>
+    <string name="collection_schools">schools</string>
+
+    <!--  FireStore Database SubCollections  -->
+    <string name="subcollection_images">images</string>
+    <string name="subcollection_videos">videos</string>
+    <string name="subcollection_feedbacks">feedbaks</string>
+
+    <!--  FireStore Database Fields  -->
+    <string name="field_address">address</string>
+    <string name="field_bacelors_cost">bachelors_cost</string>
+    <string name="field_email">email</string>
+    <string name="field_entrance_exam">entrance_exam</string>
+    <string name="field_location">location</string>
+    <string name="field_masters_cost">masters_cost</string>
+    <string name="field_programs">programs</string>
+    <string name="field_province">province</string>
+    <string name="field_religious_affiliation">religious_affiliation</string>
+    <string name="field_requirements">requirements</string>
+    <string name="field_school_id">school_id</string>
+    <string name="field_school_logo">school_logo</string>
+    <string name="field_school_name">school_name</string>
+    <string name="field_school_year">school_year</string>
+    <string name="field_term_structure">term_structure</string>
+    <string name="field_type">type</string>
+    <string name="field_website">website</string>
+
+    <!--  Array School Type  -->
+    <string-array name="type">
+        <item>Private College</item>
+        <item>State University</item>
+        <item>State College</item>
+        <item>Private University</item>
+        <item>Municipal College</item>
+    </string-array>
+
+    <!--  Array School Entrance Exam  -->
+    <string-array name="entrance_exam">
+        <item>Required</item>
+        <item>Not Required</item>
+    </string-array>
+
+    <!--  Array School Religious Affiliation  -->
+    <string-array name="religious_affiliation">
+        <item>Non-Sectarian</item>
+        <item>Catholic</item>
+    </string-array>
+
+    <!--  Array School Term Structure  -->
+    <string-array name="term_structure">
+        <item>Semester</item>
+        <item>Trimester</item>
+        <item>Quarter</item>
+    </string-array>
+
+    <!--  Array School Year  -->
+    <string-array name="school_year">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
+    <!--  Array Programs  -->
+    <string-array name="programs">
+        <item>Bachelor of Elementary Education</item>
+        <item>Bachelor of Secondary Education</item>
+        <item>Bachelor of Technical Teacher Education</item>
+        <item>BS in Industrial Education</item>
+        <item>BS in Architecture</item>
+        <item>BS in Civil Engineering</item>
+        <item>BS in Marine Engineering</item>
+        <item>BS in Electronics and Communications Engineering</item>
+        <item>BS in Electrical Engineering</item>
+        <item>BS in Mechanical Engineering</item>
+        <item>BS in Computer Engineering</item>
+        <item>BS in Industrial Engineering</item>
+        <item>BS in Chemical Engineering</item>
+        <item>BS in Agricultural Engineering</item>
+        <item>BS in Aeronautical Engineering</item>
+        <item>BS in Geodetic Engineering</item>
+        <item>BS in Mining Engineering</item>
+        <item>BS in Software Engineering</item>
+        <item>BS in Office Administration</item>
+        <item>BS in Customs Administration</item>
+        <item>BS in Public Administration</item>
+        <item>AB in Public Administration</item>
+        <item>BS in Legal Management</item>
+        <item>BS in Agriculture</item>
+        <item>BS in Agricultural Engineering</item>
+        <item>Bachelor in Agricultural Technology</item>
+        <item>BS in Forestry</item>
+        <item>BS in Fisheries and Aquatic Resources</item>
+        <item>BS in Aeronautical Engineering</item>
+        <item>BS in Management Accounting</item>
+        <item>Bachelor of Fine Arts</item>
+        <item>AB in Multimedia Arts</item>
+        <item>BS in Interior Design</item>
+        <item>BS in Business Administration</item>
+        <item>BS in Accountancy</item>
+        <item>BSBA in Marketing Management</item>
+        <item>BSBA in Financial Management</item>
+        <item>BSBA in Human Resource Development Management</item>
+        <item>BSBA in Management</item>
+        <item>BS in Accounting Technology</item>
+        <item>BS in Entrepreneurship</item>
+        <item>BS in Entrepreneurship</item>
+        <item>BSBA in Management Accounting</item>
+        <item>BSBA in Operations Management</item>
+        <item>BS in Entrepreneurial Management</item>
+        <item>AB in Economics</item>
+        <item>BSBA in Business Economics</item>
+        <item>BSBA in Entrepreneurship</item>
+        <item>BSBA in Banking and Finance</item>
+        <item>AB in Communication</item>
+        <item>AB in Mass Communication</item>
+        <item>AB in Multimedia Arts</item>
+        <item>AB in Journalism</item>
+        <item>BS in Developmental Communication</item>
+        <item>Bachelor of Library and Information Science</item>
+        <item>AB in Philosophy</item>
+        <item>AB in History</item>
+        <item>AB in Literature</item>
+        <item>BS in Information Technology</item>
+        <item>BS in Computer Science</item>
+        <item>BS in Computer Engineering</item>
+        <item>BS in Information Systems</item>
+        <item>BS in Software Engineering</item>
+        <item>AB in English</item>
+        <item>AB in Filipino</item>
+        <item>BS in Marine Transportation</item>
+        <item>BS in Marine Engineering</item>
+        <item>BS in Nursing</item>
+        <item>BS in Medical Technology</item>
+        <item>BS in Pharmacy</item>
+        <item>BS in Physical Therapy</item>
+        <item>BS in Nutrition and Dietetics</item>
+        <item>BS in Respiratory Therapy</item>
+        <item>BS in Occupational Therapy</item>
+        <item>BS in Midwifery</item>
+        <item>BM in Music Education</item>
+        <item>BM in Music Education</item>
+        <item>BS in Industrial Technology</item>
+        <item>Bachelor of Technical Teacher Education</item>
+        <item>BS in Aircraft Maintenance Technology</item>
+        <item>BS in Food Technology</item>
+        <item>BS in Computer Technology</item>
+        <item>AB in Theology</item>
+        <item>BS in Biology</item>
+        <item>BS in Mathematics</item>
+        <item>BS in Chemistry</item>
+        <item>BS in Chemistry</item>
+        <item>BS in Environmental Science</item>
+        <item>BS in Geology</item>
+        <item>BS in Applied Mathematics</item>
+        <item>BS in Applied Physics</item>
+        <item>BS in Physics</item>
+        <item>BS in Physics</item>
+        <item>BS in Marine Biology</item>
+        <item>BS in Statistics</item>
+        <item>BS in Zoology</item>
+        <item>BS in Criminology</item>
+        <item>BS in Psychology</item>
+        <item>AB in Political Science</item>
+        <item>BS in Social Work</item>
+        <item>AB in Psychology</item>
+        <item>AB in Sociology</item>
+        <item>BS in Community Development</item>
+        <item>AB in Social Science</item>
+        <item>BS in Hotel and Restaurant Management</item>
+        <item>BS in Tourism Management</item>
+        <item>BS in Hospitality Management</item>
+        <item>BS in Tourism</item>
+        <item>BS in International Hospitality Management</item>
+        <item>BS in Travel Management</item>
+    </string-array>
+
+    <!--  Array Province  -->
+    <string-array name="province">
+        <item>Aurora</item>
+        <item>Bataan</item>
+        <item>Bulacan</item>
+        <item>Nueva Ecija</item>
+        <item>Pampanga</item>
+        <item>Tarlac</item>
+        <item>Zambales</item>
+    </string-array>
+
+    <!--  Array Degree  -->
+    <string-array name="degree">
+        <item>Bachelors Degree</item>
+        <item>Masters Degree</item>
+        <item>Doctorals Degree</item>
+    </string-array>
+
+    <!--  Array Tuition Fee range  -->
+    <string-array name="costs">
+        <item>Free Tuition</item>
+        <item>&lt; ₱10,000</item>
+        <item>&lt; ₱20,000</item>
+        <item>&lt; ₱30,000</item>
+        <item>&lt; ₱40,000</item>
+        <item>&lt; ₱50,000</item>
+        <item>&lt; ₱60,000</item>
+        <item>&lt; ₱70,000</item>
+        <item>&lt; ₱80,000</item>
+        <item>&lt; ₱90,000</item>
+        <item>&lt; ₱100,000</item>
+        <item>&gt; ₱100,001</item>
+    </string-array>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

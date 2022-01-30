@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="36dp"
+    android:id="@+id/rootLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/feedback_subject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Subject"
+            android:textColor="@color/blue_grey_900"
+            android:fontFamily="@font/muli_bold"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:singleLine="true"/>
+        <EditText
+            android:id="@+id/feedback_description"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:textColor="@color/blue_grey_900"
+            android:padding="10dp"
+
+            android:textSize="20dp"
+            android:fontFamily="@font/muli_bold"
+            android:hint="Have a feedback? We would love to hear it."
+            android:gravity="top"/>
+        <Button
+            android:id="@+id/send_user_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Send Feedback"
+            android:textAllCaps="false"
+            android:enabled="false"
+            android:fontFamily="@font/muli_italic"/>
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

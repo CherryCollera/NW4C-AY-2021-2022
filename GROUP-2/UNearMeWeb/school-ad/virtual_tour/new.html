@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U-Near Me | Virtual Tour</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Link to Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container">
+            <a href="#" class="navbar-brand">
+                <div class="font-weight-bold">UNEARME | Create Virtual Tour</div>
+            </a>
+        </div>
+    </nav>
+    <div class="flex">
+        <div class="flex flex-col shadow-md rounded-md gap-2 mx-auto my-4 flex-1 max-w-2xl">
+            <div class="bg-blue-500 p-2 text-white">
+                <h1 class="font-bold text-lg">Create Tour</h1>
+                <p class="text-sm">Enter information to create a tour.</p>
+            </div>
+            <div class="flex flex-col gap-2 p-4">
+                <input type="text" name="tourName" placeholder="Tour Name" class="ronded-md outline-none rounded-sm p-2 shadow-md" />
+                <textarea name="tourDescription" placeholder="Tour Description" class="rounded-md outline-none rounded-sm p-2 shadow-md"></textarea>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">
+                        Upload Pictures
+                        <small>(Select all scene pictures.)</small>
+                    </label>
+                    <input type="file" id="file-upload" multiple accept="image/png, image/gif, image/jpeg"/>
+                    <!-- <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                    <div class="space-y-1 text-center">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        <div class="flex text-sm text-gray-600">
+                        <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                            <span>Upload Pictures</span>
+                            <input id="file-upload" name="file-upload" type="file" class="sr-only" multiple>
+                        </label>
+                        <p class="pl-1">or drag and drop</p>
+                        </div>
+                        <p class="text-xs text-gray-500">
+                        PNG, JPG, GIF up to 10MB
+                        </p>
+                    </div>
+                    </div> -->
+                </div>
+                <div class="flex justify-end">
+                    <button id="createTour" type="button" onclick="createTour()" class="bg-blue-700 text-white py-1 px-4 rounded-md hover:bg-blue-800">
+                        Create Tour
+                    </button>
+                </div>
+            </div>
+            <div class="m-4" data-container-id="progress" style="display: none;">
+                <div class="relative">
+                    <div class="flex mb-2 items-center justify-between">
+                        <div>
+                            <span
+                            class="
+                                text-xs
+                                font-semibold
+                                inline-block
+                                py-1
+                                px-2
+                                uppercase
+                                rounded-full
+                                text-white
+                                bg-purple-400
+                            "
+                            >
+                            Uploading Images (<span data-info-id="progressFiles"></span>)
+                            </span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs font-semibold inline-block text-purple-600" data-info-id="progressText">
+                                0%
+                            </span>
+                        </div>
+                        </div>
+                        <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-purple-200">
+                        <div data-info-id="progressBar" class="shadow-noneflex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+           <!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script src="/script/firebase-config.js"></script>
+    <script src="js/compressor.js"></script>
+    <script src="./js/new.js"></script>
+
+
+    <script>
+
+
+    </script>
+</body>
+</html>

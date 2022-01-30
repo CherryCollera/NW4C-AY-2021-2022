@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.NearMe"
+    android:orientation="vertical">
+
+
+
+    <fragment
+        android:id="@+id/map_near_me"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="slider_desc"
+            android:value="10.0"
+            android:background="@color/transparent"
+            android:valueFrom="10.0"
+            android:valueTo="50.0"
+            android:stepSize="5.0"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kilometers"
+            android:textSize="16sp"
+            android:fontFamily="@font/muli_italic"
+            android:layout_gravity="center"
+            android:layout_below="@+id/slider"
+            android:layout_centerHorizontal="true"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

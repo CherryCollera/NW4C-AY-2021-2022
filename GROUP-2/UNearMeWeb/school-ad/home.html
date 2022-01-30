@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U-Near Me | School Admin - Home</title>
+    <!-- Link to Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;700&display=swap');
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: 'Readex Pro', sans-serif;
+        }
+        .bg{
+            height: 200px;
+            background: rgb(0,168,255);
+            background: linear-gradient(90deg, rgba(0,168,255,1) 0%, rgba(0,168,255,1) 40%, rgba(0,212,255,1) 100%);
+            
+        }
+        .school-logo-div{
+            height: 120px;
+            width: 100%;
+        }
+        .uschool-logo-div{
+            height: 200px;
+            width: 100%;
+        }
+        .school-logo-container{
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            overflow: hidden;
+            /* border: 1px solid grey; */
+        }
+        #display-school-logo, #udisplay-school-logo{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+         
+        #school-logo-input, #uschool-logo-input{
+            display: none;  
+        }
+        #choosePhoto, #uchoosePhoto{
+            height: 40px;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: wheat;
+            cursor: pointer;
+            display: none;
+            line-height: 30px;
+        }
+        #p-container{
+            max-height: 500px;
+            overflow-y: scroll;
+        }
+        #r-container{
+            max-height: 500px;
+            overflow-y: scroll;
+        }
+        ul.nav li.nav-item a.active {background-color: rgba(92, 203, 255);} 
+        ul.nav li.nav-item a {color: black;}
+
+        ul#requirements-container{list-style-type:none;
+        padding: 10px;
+        align-items: center;
+            justify-content: center;}
+        li.alternate{
+            padding: 10px;
+            
+        }
+        li.alternate:nth-child(odd){
+            background-color: rgba(92, 203, 255, 0.2);
+        }
+        li.alternate:nth-child(even){
+            background-color: rgba(92, 203, 255, 0.07);
+        }
+        .toast-container{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        label{
+            color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .uschool-logo-container{
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #fff;
+            border: 1px solid grey;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container">
+            <a href="#" class="navbar-brand">
+                <div class="font-weight-bold">UNEARME</div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                
+                <div class="navbar-nav me-auto">
+                    <a class="nav-item nav-link" aria-current="page" href="./virtual_tour/new.html">Virtual Tour</a>
+                    <a href="./feedbacks.html" class="nav-item nav-link">Feedbacks</a>
+                </div>
+                <div class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle email-nav" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" href="#" id="account">Account</a></li>
+                          <li><a class="dropdown-item" href="#" id="logout">Logout</a></li>
+                          
+                        </ul>
+                    </li>
+                </div>
+                
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Account</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="updateAccount">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" required>
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" required>
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" required>
+                </form>
+                
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" form="updateAccount" id="saveChanges" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    
+    <!-- <div class="toast-container align-items-center justify-content-center text-white bg-warning border-0 col-md-3" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body">
+            Unpublished:
+          </div>
+          
+        </div>
+      </div> -->
+    <!-- Content -->
+    
+    <div class="bg">
+        <!-- <img  id="cover-photo"> -->
+    </div>
+    <div class="school-logo-div">
+        <div class="school-logo-container">
+            <img src="" id="display-school-logo">
+            <label id="choosePhoto" data-bs-toggle="modal" data-bs-target="#editPhotoNameModal">Upload</label>
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="text-center" id="school_name"></h1>
+        <ul class="nav nav-pills border rounded nav-fill mt-5 mb-3">
+            <li class="nav-item">
+                <a class="nav-link active" href="#info" data-bs-toggle="tab">Info</a>
+            </li>
+            <li class="nav-item">
+                
+                <a class="nav-link" href="#programs" data-bs-toggle="tab">Programs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#requirements" data-bs-toggle="tab">Requirements</a>
+            </li>
+        </ul>
+        <!-- Tab Container -->
+        <div class="tab-content mt-3 p-3 bg-light">
+            <!-- Info Tab -->
+            <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+                <div class="row">
+                    <div><h4>School Info</h4></div>
+                    <div class="col-sm">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <p class="font-weight-light">Type:</p>
+                                <h5 id="type"></h5>
+                            </li>
+                            <li class="list-group-item">
+                                <p class="font-weight-light">Religious Affiliation:</p>
+                                <h5 id="religious_affiliation"></h5>
+                            </li>
+                            <li class="list-group-item">
+                                <p class="font-weight-light">Entrance Exam:</p>
+                                <h5 id="entrance_exam"></h5>
+                            </li>
+                            <li class="list-group-item">
+                                <p class="font-weight-light">Term Structure:</p>
+                                <h5 id="term_structure"></h5>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <p class="font-weight-light">Start of Classes:</p>
+                                <h5 id="start_classes"></h5>
+                            </li>
+                            <li class="list-group-item">
+                                <p class="font-weight-light">School Email:</p>
+                                <h5 id="school_email"></h5>
+                            </li>
+                            <li class="list-group-item">
+                                <p class="font-weight-light">Website:</p>
+                                <h5 id="school_website"></h5>
+                            </li>
+                            <li class="list-group-item">
+                                <p class="font-weight-light">Address:</p>
+                                <h5 id="school_address"></h5>
+                            </li>
+                        </ul>
+                    </div>
+            
+                    <div class="col-sm">
+                        <h6>Location:</h6>
+                        <div id="map" style="height: 325px; width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mt-3">
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editInfoModal">Edit</button>
+                </div>
+                
+                <hr>
+                <div><h4>Tuition Fee</h4></div>
+                <div class="row" id="tuition-fee-container"></div>
+                <div class="d-flex justify-content-end mt-3">
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editTuitionModal">Edit</button>
+                </div>
+            </div>
+            <!-- Programs Tab -->
+            <div class="tab-pane fade" id="programs" role="tabpanel" aria-labelledby="programs-tab">
+                <div><h4>Programs</h4></div>
+                <div class="row p-container" >
+                    <div>
+                        <ul id="programs-container">
+
+                        </ul>
+                    </div>
+                    
+                </div>
+                <div class="d-flex justify-content-end mt-3">
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editProgramsModal">Edit</button>
+                </div>
+            </div>
+            <!-- Requirements Tab -->
+            <div class="tab-pane fade" id="requirements" role="tabpanel" aria-labelledby="requirements-tab">
+                <div><h4>Admission Requirements</h4></div>
+                <div class="row r-container" >
+                    <div>
+                        <ul id="requirements-container">
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mt-3">
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editRequirementsModal">Edit</button>
+                </div>
+            </div>
+        </div>
+       <br><br><br>
+    </div>
+
+    <!-- Edit Photo and Name Modal -->
+    <div class="modal fade" id="editPhotoNameModal" data-bs-backdrop="static" tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Admission Requirements:</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form id="updatePhotoNameForm">
+                        <div class="uschool-logo-div mb-3">
+                            <div class="uschool-logo-container">
+                                <div class="ulogo-validation"></div>
+                                <img src="" id="udisplay-school-logo">
+                                <input type="file" id="uschool-logo-input">
+                                <label for="uschool-logo-input" id="uchoosePhoto">Choose photo</label>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="form-group col-md-6 text-center">
+                                <label for="uschool_name">School Name</label>
+                                <input type="text" class="form-control" id="uschool_name" required>
+                            </div>
+                        </div>
+                    </form>
+                    
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary"  form="updatePhotoNameForm">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Info Modal -->
+    <div class="modal fade" id="editInfoModal" tabindex="-1" data-bs-backdrop="static">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">School Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="updateInfoForm">
+                        <div class="row ">
+                            <!-- School Type -->
+                            <div class="form-group col-md-6">
+                                <label>Type</label>
+                                <select class="form-select" id="utype" required>
+                                    <option disabled></option>
+                                    <option value="Municipal College">Municipal College</option>
+                                    <option value="Private College">Private College</option>
+                                    <option value="Private University">Private University</option>
+                                    <option value="State College">State College</option>
+                                    <option value="State University">State University</option>
+                                </select>
+                                
+                            </div>
+                            <!-- Entrance Exam -->
+                            <div class="form-group col-md-6">
+                                <label>Entrance Exam</label>
+                                <select class="form-select" id="uentrance_exam" required>
+                                    <option disabled></option>
+                                    <option value="Required">Required</option>
+                                    <option value="Not Required">Not Required</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-1r">
+                            <!-- Religious Affiliation -->
+                            <div class="form-group col-md-6">
+                                <label>Religious Affiliation</label>
+                                <select class="form-select" id="ureligious_affiliation" required>
+                                    <option disabled></option>
+                                    <option value="Catholic">Catholic</option>
+                                    <option value="Non-Sectarian">Non-Sectarian</option>
+                                </select>
+                            </div>
+                            <!-- Term Structure -->
+                            <div class="form-group col-md-6">
+                                <label>Term Structure</label>
+                                <select class="form-select" id="uterm_structure" required>
+                                    <option disabled></option>
+                                    <option value="Quarter">Quarter</option>
+                                    <option value="Semester">Semester</option>
+                                    <option value="Trimester">Trimester</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <!-- Start of Classes -->
+                            <div class="form-group col-md-6">
+                                <label>Start of Classes</label>
+                                <select class="form-select" id="umonth_start" required>
+                                    <option disabled></option>
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
+                                </select>
+                            </div>
+                            <!-- School Email -->
+                            <div class="form-group col-md-6">
+                                <label>School Email</label>
+                                <input type="email" class="form-control" id="uschool_email" required>
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <!-- School Website  -->
+                            <div class="form-group col-md-6">
+                                <label>School Website</label>
+                                <input type="text" class="form-control" id="uschool_website" required>
+                            </div>
+                            <!-- School Address -->
+                            <div class="form-group col-md-6">
+                                <label>Address</label>
+                                <input type="text" class="form-control" id="uschool_address" required>
+                            </div>
+                        </div>
+                    </form>
+                    <br> 
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" form="updateInfoForm" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Tuition Modal -->
+    <div class="modal fade" id="editTuitionModal" data-bs-backdrop="static" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tuition Fee</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="updateTuitionForm">
+                        <div class="row g-2">
+                            <div class="d-flex justify-content-between">
+                                <h5>Bachelors's Degree:</h5>
+                                <div>
+                                    <label for="bdtf">Offer</label>
+                                    <input class="form-check-input" type="checkbox" name="checkbox" id="bdtf">
+                                </div>
+                            </div>
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input value="0" type="number" class="form-control number bdtf" id="ubdtffrom" placeholder="From" disabled required>
+                                        <label for="floatingInputGrid">From</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input value="0" type="number" class="form-control number bdtf" id="ubdtfto" placeholder="To" disabled required>
+                                        <label for="floatingInputGrid">To</label>
+                                    </div>
+                                </div>
+                        </div>
+                        <br>
+                        <!--  -->
+                        <div class="row g-2">
+                            <div class="d-flex justify-content-between">
+                                <h5>Master's Degree:</h5>
+                                <div>
+                                    <label for="mdtf">Offer</label>
+                                    <input value="0" class="form-check-input" type="checkbox" name="checkbox" id="mdtf" >
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input value="0" type="number" class="form-control number mdtf" id="umdtffrom" placeholder="From" disabled required>
+                                    <label for="floatingInputGrid">From</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input value="0" type="number" class="form-control number mdtf" id="umdtfto" placeholder="To" disabled required>
+                                    <label for="floatingInputGrid">To</label>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <!--  -->
+                        <div class="row g-2">
+                            <div class="d-flex justify-content-between">
+                                <h5>Doctoral's Degree:</h5>
+                                <div>
+                                    <label for="ddtf">Offer</label>
+                                    <input class="form-check-input" type="checkbox" name="checkbox"  id="ddtf" >
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input value="0" type="number" class="form-control number ddtf" id="uddtffrom" placeholder="From" disabled required>
+                                    <label for="floatingInputGrid">From</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input value="0" type="number" class="form-control number ddtf" id="uddtfto" placeholder="To" disabled required>
+                                    <label for="floatingInputGrid">To</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <br> 
+                </div>
+                        <!-- Modal Footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" form="updateTuitionForm" class="btn btn-primary"  id="updateTuition">Save changes</button>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Programs Modal -->
+    <div class="modal fade" id="editProgramsModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg modal-dialog-centered" id="login-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Programs offered:</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form id="updateProgramsForm">
+                        <div class="checkBoxContainer">
+                
+                        </div>
+                        
+                    </form>
+                    
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary"  form="updateProgramsForm">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Requirements Modal -->
+    <div class="modal fade" id="editRequirementsModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Admission Requirements:</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form id="updateRequirementsForm">
+                        <div class="requirementsContainer">
+                
+                        </div>
+                        <button type="button" class="btn btn-primary" id="addRequirement">Add</button>
+                    </form>
+                    
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" form="updateRequirementsForm">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-storage.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js"></script>
+    <!-- Link to firebase config -->
+    <script type="text/javascript" src="/script/firebase-config.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Sweet Alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Google Map -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjsNSzU4sYw6tIJaIYUbMRg1EHRD2bn1A">
+    </script>
+     <!-- Link to home.js -->
+     <script src="/school-ad/programsarray.js"></script>
+     <script src="/school-ad/js/home.js"></script>
+
+</body>
+</html>

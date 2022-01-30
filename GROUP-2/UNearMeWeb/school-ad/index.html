@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U-Near Me | Setup School</title>
+
+    <!-- Link to Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> -->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;700&display=swap');
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: 'Readex Pro', sans-serif;
+        }
+
+        body {
+            background-color: #f1f1f1;
+            /* overflow: hidden; */
+        }
+
+        #regForm {
+            background-color: #ffffff;
+            margin: 100px auto;
+            
+            padding: 40px;
+            width: 70%;
+            min-width: 300px;
+        }
+
+        h1 {
+            text-align: center;  
+        }
+
+
+
+        /* Mark input boxes that gets an error on validation: */
+        input.invalid, select.invalid {
+            background-color: #ffdddd;
+        }
+
+
+        /* Hide all steps by default: */
+        .tab {
+            display: none;
+        }
+
+        button {
+            background-color: rgb(72, 183, 235);
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 17px;
+           
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        #prevBtn {
+            background-color: #bbbbbb;
+        }
+
+        /* Make circles that indicate the steps of the form: */
+        .step {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbbbbb;
+            border: none;  
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.5;
+        }
+
+        .step.active {
+            opacity: 1;
+        }
+
+        /* Mark the steps that are finished and valid: */
+        .step.finish {
+            background-color: #04AA6D;
+        }
+        .school-logo-div{
+            height: 200px;
+            width: 100%;
+        }
+        .school-logo-container{
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid grey;
+        }
+        #display-school-logo{
+            height: 100%;
+            width: 100%;
+        }
+        .logo-validation{
+            height: 100%;
+            width: 100%;
+            background-color: #ffdddd;
+            display: none;
+        }
+        #school-logo-input{
+            display: none;
+        }
+        #choosePhoto{
+            height: 40px;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: wheat;
+            cursor: pointer;
+            display: none;
+            line-height: 30px;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .loader{
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.4);
+            position: absolute;
+            z-index: 100000;
+          }
+          .loader>div{
+              height: 65px;
+              width: 65px;
+              border: 10px solid #45474b;
+              border-top-color: #2a88e6;
+              border-bottom-color: #2a88e6;
+              position: absolute;
+              margin: auto;
+              top: 0;
+              bottom: 0;
+              right: 0;
+              left: 0;
+              border-radius: 50%;
+              animation: spin 1s infinite ease;
+          }
+
+          @keyframes spin{
+              100%{
+                  transform: rotate(360deg);
+              }
+          }
+          .checkBoxContainer{
+              height: 350px;
+              overflow-y: scroll;
+              padding: 25px 50px;
+          }
+    </style>
+
+
+
+</head>
+<body>
+
+    <div class="loader">
+        <div></div>
+   </div>
+
+    <nav class="navbar navbar-expand-md navbar-light bg-light" style="z-index: 1056;">
+        <div class="container">
+            <a href="#" class="navbar-brand">
+                <div class="font-weight-bold">UNEARME</div>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle email-nav" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                         
+                          <li><a class="dropdown-item" href="#" id="logout">Logout</a></li>
+                          
+                        </ul>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="myModal" class="modal fade" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h3 class="modal-title">Pending</h3>
+                  </div>
+                  <div class="modal-body">
+                      <p>We are still reviewing your request. You will receive an email from us once approved.</p>
+                  </div>
+              </div>
+        </div>
+    </div>
+
+    <div class="container mt-5 content">
+        <form id="regForm" novalidate>
+            <h5 style="text-align: center;">Setup School</h5>
+            <h3 id="school-name-holder" style="text-align: center;"></h3>
+            <hr>
+            <br>
+            <!-- One "tab" for each step in the form: -->
+            <div class="tab">
+                <h4>School Information:</h4>
+                <label style="text-align: center; width: 100%;">School Logo</label>
+                <div class="school-logo-div mb-3">
+                    <div class="school-logo-container">
+                        <div class="logo-validation"></div>
+                        <img src="" id="display-school-logo">
+                        <input type="file" id="school-logo-input" oninput="hidelogovalidation()">
+                        <label for="school-logo-input" id="choosePhoto">Choose photo</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- School Type -->
+                    <div class="form-group col-md-6">
+                        <label>Type</label>
+                        <select class="form-select" id="type" oninput="this.className = 'form-select'">
+                            <option selected value="" disabled></option>
+                            <option value="Municipal College">Municipal College</option>
+                            <option value="Private College">Private College</option>
+                            <option value="Private University">Private University</option>
+                            <option value="State College">State College</option>
+                            <option value="State University">State University</option>
+                        </select>
+                          
+                    </div>
+                    <!-- Entrance Exam -->
+                    <div class="form-group col-md-6">
+                        <label>Entrance Exam</label>
+                        <select class="form-select" id="entrance_exam" oninput="this.className = 'form-select'">
+                            <option selected disabled></option>
+                            <option value="Required">Required</option>
+                            <option value="Not Required">Not Required</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <!-- Religious Affiliation -->
+                    <div class="form-group col-md-6">
+                        <label>Religious Affiliation</label>
+                        <select class="form-select" id="religious_affiliation" oninput="this.className = 'form-select'">
+                            <option selected disabled></option>
+                            <option value="Catholic">Catholic</option>
+                            <option value="Non-Sectarian">Non-Sectarian</option>
+                        </select>
+                    </div>
+                    <!-- Term Structure -->
+                    <div class="form-group col-md-6">
+                        <label>Term Structure</label>
+                        <select class="form-select" id="term_structure" oninput="this.className = 'form-select'">
+                            <option selected disabled></option>
+                            <option value="Quarter">Quarter</option>
+                            <option value="Semester">Semester</option>
+                            <option value="Trimester">Trimester</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <!-- Start of Classes -->
+                    <div class="form-group col-md-6">
+                        <label>Start of Classes</label>
+                        <select class="form-select" id="month_start" oninput="this.className = 'form-select'">
+                            <option selected disabled></option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                    </div>
+                    <!-- School Email -->
+                    <div class="form-group col-md-6">
+                        <label>School Email</label>
+                        <input type="email" class="form-control" id="school_email" oninput="this.className = 'form-control'">
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <!-- School Website  -->
+                    <div class="form-group col-md-6">
+                        <label>School Website</label>
+                        <input type="url" class="form-control" id="school_website" oninput="this.className = 'form-control'">
+                    </div>
+                    <!-- School Address -->
+                    <div class="form-group col-md-6">
+                        <label>Address</label>
+                        <input type="text" class="form-control" name="url_code" id="school_address" data-bs-toggle="modal" data-bs-target="#mapModal"  onkeypress="return false;">
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="tab">
+                <h4>Programs Offered:</h4> 
+                <div class="checkBoxContainer border">
+                    
+                </div>
+                <br>
+            </div>
+            <div class="tab">
+                <h4>Tuition Fee:</h4> <br>
+                <div class="row g-2">
+                    <div class="d-flex justify-content-between">
+                        <h5>Bachelors's Degree:</h5>
+                    <div>
+                        <label for="bdtf">Offer</label>
+                        <input class="form-check-input" type="checkbox" name="checkbox" id="bdtf" oninput="this.className = 'form-check-input'">
+                    </div>
+                </div>
+                  
+                  <div class="col">
+                    <div class="form-floating">
+                      <input value="0" type="number" class="form-control number bdtf" id="bdtffrom" placeholder="From" disabled oninput="this.className = 'form-control number bdtf'">
+                      <label for="floatingInputGrid">From</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-floating">
+                      <input value="0" type="number" class="form-control number bdtf" id="bdtfto" placeholder="To" disabled oninput="this.className = 'form-control number bdtf'">
+                      <label for="floatingInputGrid">To</label>
+                    </div>
+                  </div>
+                
+                </div>
+                <br>
+                <!--  -->
+                <div class="row g-2">
+                  <div class="d-flex justify-content-between">
+                    <h5>Master's Degree:</h5>
+                    <div>
+                      <label for="mdtf">Offer</label>
+                      <input value="0" class="form-check-input" type="checkbox" name="checkbox" id="mdtf" oninput="this.className = 'form-check-input'">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-floating">
+                      <input value="0" type="number" class="form-control number mdtf" id="mdtffrom" placeholder="From" disabled oninput="this.className = 'form-control number mdtf'">
+                      <label for="floatingInputGrid">From</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-floating">
+                      <input value="0" type="number" class="form-control number mdtf" id="mdtfto" placeholder="To" disabled oninput="this.className = 'form-control number mdtf'">
+                      <label for="floatingInputGrid">To</label>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <!--  -->
+                <div class="row g-2">
+                  <div class="d-flex justify-content-between">
+                    <h5>Doctoral's Degree:</h5>
+                    <div>
+                      <label for="ddtf">Offer</label>
+                      <input class="form-check-input" type="checkbox" name="checkbox"  id="ddtf" oninput="this.className = 'form-check-input'">
+                    </div>
+                  </div>
+                  
+                  <div class="col">
+                    <div class="form-floating">
+                      <input value="0" type="number" class="form-control number ddtf" id="ddtffrom" placeholder="From" disabled oninput="this.className = 'form-control number ddtf'">
+                      <label for="floatingInputGrid">From</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-floating">
+                      <input value="0" type="number" class="form-control number ddtf" id="ddtfto" placeholder="To" disabled oninput="this.className = 'form-control number ddtf'">
+                      <label for="floatingInputGrid">To</label>
+                    </div>
+                  </div>
+                </div>
+                <br> 
+                
+            </div>
+            
+            <div class="tab">
+              <div class="d-flex align-items-center justify-content-between">
+                <h4>Admission Requirements:</h4>
+                
+                <button type="button" class="btn btn-primary" id="addRequirement">Add</button>
+              </div>
+               <br>
+              <div class="requirementsContainer">
+                
+              </div>
+              <!-- <button type="button" class="btn btn-primary" id="test">test</button> -->
+              <br>
+            </div>
+            <div style="overflow:auto;">
+              <div style="float:right;">
+                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+              </div>
+            </div>
+            <!-- Circles which indicates the steps of the form: -->
+            <div style="text-align:center;margin-top:40px;">
+              <span class="step"></span>
+              <span class="step"></span>
+              <span class="step"></span>
+              <span class="step"></span>
+            </div>
+          </form>
+    </div>
+
+    <!-- Map Modal -->
+    <div class="modal fade" id="mapModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered" id="login-modal">
+          <div class="modal-content">
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+              <!-- Form -->
+              <form class="needs-validation" id="address-form">
+                <div class="mb-5">
+                  <label for="update-address" class="col-form-label">Address:</label>
+                  <input type="text" class="form-control" id="update-address" onkeyup='URLChange(this.value);' required>
+                </div>
+                <div class="mb-3">
+                  <p class="text-center">Move or Drag the marker to the exact location</p>
+                </div>
+              <!-- form -->
+    
+              <div id="map" style="height: 500px; width: 100%;"></div>
+              </div>
+              <!-- Modal Footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary"  id="mapDone">Done</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-storage.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that yosu want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js"></script>
+
+    <!-- Link to firebase config -->
+    <script type="text/javascript" src="/script/firebase-config.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <!-- Google Map -->
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjsNSzU4sYw6tIJaIYUbMRg1EHRD2bn1A"></script>
+    <script src="/school-ad/programsarray.js"></script>
+    <script src="/school-ad/js/index.js"></script>
+    <script type="text/javascript">
+// window.onbeforeunload = function() {
+//         return "Dude, are you sure you want to leave? Think of the kittens!";
+//     }
+        var currentTab = 0; // Current tab is set to be the first tab (0)
+        showTab(currentTab); // Display the current tab
+
+        function showTab(n) {
+            // This function will display the specified tab of the form...
+            var x = document.getElementsByClassName("tab");
+            x[n].style.display = "block";
+            //... and fix the Previous/Next buttons:
+            if (n == 0) {
+                document.getElementById("prevBtn").style.display = "none";
+            } else {
+                document.getElementById("prevBtn").style.display = "inline";
+            }
+            if (n == (x.length - 1)) {
+                document.getElementById("nextBtn").innerHTML = "Publish";
+            } else {
+                document.getElementById("nextBtn").innerHTML = "Next";
+            }
+            //... and run a function that will display the correct step indicator:
+            fixStepIndicator(n)
+        }
+
+        function nextPrev(n) {
+            // This function will figure out which tab to display
+            var x = document.getElementsByClassName("tab");
+            // Exit the function if any field in the current tab is invalid:
+             if (n == 1 && !validateForm()) return false; ////////////////////////////////////////////////////////
+           
+            // Hide the current tab:
+            x[currentTab].style.display = "none";
+
+            // Increase or decrease the current tab by 1:
+            currentTab = currentTab + n;
+            
+            // if you have reached the end of the form...
+            if (currentTab >= x.length) {
+                // ... the form gets submitted:
+                document.getElementById("nextBtn").type = "submit";
+                return false;
+            }
+          // Otherwise, display the correct tab:
+          showTab(currentTab);
+          
+
+            
+        }
+
+        function validateForm() {
+            // This function deals with validation of the form fields
+            var x, y, z, i, valid = true;
+            x = document.getElementsByClassName("tab");
+            y = x[currentTab].getElementsByTagName("input");
+            z = x[currentTab].getElementsByTagName("select");
+            // A loop that checks every input field in the current tab:
+            for (i = 0; i < y.length; i++) {
+                // If a field is empty...
+                if (y[i].value == "") {
+                // add an "invalid" class to the field:
+                y[i].className += " invalid";
+
+                if(y[i].type == 'file'){
+                  $('.logo-validation').show();
+                }
+                // and set the current valid status to false
+                valid = false;
+                }
+                if(y[i].disabled == true){
+                  y[i].classList.remove("invalid");
+                }
+                
+            }
+            for (i = 0; i < z.length; i++) {
+                // If a field is empty...
+                if (z[i].value == "") {
+                // add an "invalid" class to the field:
+                z[i].className += " invalid";
+                // and set the current valid status to false
+                valid = false;
+                }
+            }
+            // If the valid status is true, mark the step as finished and valid:
+            if (valid) {
+                document.getElementsByClassName("step")[currentTab].className += " finish";
+                
+                
+            }
+            return valid; // return the valid status
+        }
+
+        function fixStepIndicator(n) {
+            // This function removes the "active" class of all steps...
+            var i, x = document.getElementsByClassName("step");
+            for (i = 0; i < x.length; i++) {
+                x[i].className = x[i].className.replace(" active", "");
+            }
+            //... and adds the "active" class on the current step:
+            x[n].className += " active";
+        }
+        function hidelogovalidation() {
+          $('.logo-validation').hide();
+        }
+
+        
+        
+</script>
+
+
+
+</body>
+
+</html>

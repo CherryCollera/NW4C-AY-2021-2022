@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditAddress">
+
+    <fragment
+        android:id="@+id/map_view_fragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <EditText
+        android:id="@+id/et_search_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/edit_text_round"
+        android:drawableStart="@drawable/clip_art_location_searching"
+        android:fontFamily="@font/muli_bold"
+        android:hint="Search Place or City"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/peterriver_accent"
+        android:textSize="16sp"
+        android:imeOptions="actionSearch"
+        android:singleLine="true"/>
+
+    <EditText
+        android:id="@+id/et_complete_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_search_address"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/edit_text_round"
+        android:drawableStart="@drawable/clip_art_location"
+        android:fontFamily="@font/muli_bold"
+        android:hint="Enter complete address"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/peterriver_accent"
+        android:textSize="16sp"
+        android:singleLine="true"/>
+
+    <Button
+        android:id="@+id/update_address_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="60dp"
+        android:elevation="8dp"
+        android:fontFamily="@font/muli_italic"
+        android:text="Update Address"
+        android:textAllCaps="false" />
+
+</RelativeLayout>

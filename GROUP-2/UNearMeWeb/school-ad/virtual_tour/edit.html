@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U-Near Me | Virtual Tour</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="grid grid-cols-4">
+        <div class="col-span-3 max-h-screen h-screen">
+            <div id="tour"></div>
+        </div>
+        <div>
+            <div class="shadow-md m-2 rounded-md h-2/3 max-h-screen overflow-y-scroll">
+                <div class="bg-gray-700 font-bold text-white p-4 flex justify-between items-center">
+                    <h1 data-id='tourName'></h1>
+                    <div class="flex justify-center items-center gap-2">
+                        <a href="dashboard.html" class="border-2 rounded-md py-1 px-4 border-blue-300 hover:border-blue-500">Go Home</a>
+                        <button data-action-id="unselectScene" class="hidden border-2 rounded-md py-1 px-4 border-blue-300 hover:border-blue-500 font-bold" onclick="unselectScene()">Unselect</button>
+                        <button class="border-2 rounded-md py-1 px-4 border-blue-300 hover:border-blue-500" onclick="addMoreImages()">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-2 p-2" data-container-id="images">
+                    
+                </div>
+            </div>
+            <div class="shadow-md m-2 rounded-md max-h-screen hidden" data-container-id="hotspotActions">
+                <div class="bg-indigo-800 font-bold text-white p-4 flex justify-between items-center box-shadow rounded-lg">
+                    <div>
+                        <h1>Hotspot Actions</h1>
+                    </div>
+                    <div>
+                        <button class="border-2 rounded-md py-1 px-4 border-yellow-300 hover:border-yellow-500" onclick="unselectHotspot()">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                            </svg>
+                        </button>
+                        <button class="border-2 rounded-md py-1 px-4 border-red-300 hover:border-red-500" onclick="removeHotspot()">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                        </button>
+                        <button class="border-2 rounded-md py-1 px-4 border-blue-300 hover:border-blue-500" onclick="performHotspotAction()">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7l4-4m0 0l4 4m-4-4v18" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    
+    <script>
+
+        const firebaseConfig = {
+  apiKey: "AIzaSyAEZ5nzUn3ERKhoZWWLg75yevckfS1rzFM",
+  authDomain: "u-near-me-457b8.firebaseapp.com",
+  databaseURL: "https://u-near-me-457b8-default-rtdb.firebaseio.com",
+  projectId: "u-near-me-457b8",
+  storageBucket: "u-near-me-457b8.appspot.com",
+  messagingSenderId: "90267080922",
+  appId: "1:90267080922:web:389c66600124f51d0cede3",
+  measurementId: "G-YLSSJV5WBM"
+};
+  // Initialize Firebase
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+        // containers
+const imageContainers = document.querySelector("div[data-container-id='images']");
+const tourNameEl = document.querySelector("h1[data-id='tourName']");
+
+// Initialize Firebase
+const db = firebase.firestore();
+
+        let sceneSimple = {};
+        const tourId = new URL(window.location.href).searchParams.get("id");
+        let viewer;
+        let action = "delete";
+        let activeHotspot = -1,
+            previousScene = -1;
+        let hotspotSelected = {
+            id: -1
+        }
+
+        const images = [];
+        let tour = db.collection("tours").doc(`${tourId}`);
+        let imageId = 0;
+
+        function removeEmpty(obj) {
+            return Object.fromEntries(
+                Object.entries(obj)
+                .filter(([_, v]) => v != null)
+                .map(([k, v]) => [k, v === Object(v) ? removeEmpty(v) : v])
+            );
+        }
+
+        function saveChanges() {
+            db.collection("tours").doc(`${tourId}`).update({
+                scenes: JSON.stringify(viewer.getConfig().scenes).replaceAll(`,\"div\":{}`, "")
+            }).then((data) => {
+                console.log("Changes saved!");
+            });
+        }
+
+        async function initTour() {
+            await tour.get().then((doc) => {
+                if (doc.exists) {
+                    tour = doc.data();
+
+                    // load data here
+                    for (let image of tour.pictures) {
+                        if (imageId+1 == activeHotspot) continue;
+                        imageContainers.innerHTML += `
+                            <div data-information-id='${imageId+1}' onclick="selectScene(${imageId+1})"><img class="m-auto" style="width: 75%;" src='${image}' /></div>
+                        `;
+                        imageId++;
+
+                        images.push(image);
+                    }
+
+                    let scene;
+
+                    if (Object.keys(tour).indexOf("scenes") > -1) {
+                        scene = JSON.parse(tour.scenes);
+                        for (let [key, obj] of Object.entries(scene)) {
+                            obj["hotSpots"].map((data) => {
+                                data.clickHandlerFunc = function(e, args) {
+                                    handler(e, args, this.id);
+                                }
+                            });
+                        }
+                    } else {
+                        scene = {1: {
+                                "hfov": 110,
+                                "pitch": 0,
+                                "yaw": 0,
+                                "type": "equirectangular",
+                                "panorama": images[0],
+                                "hotSpots": []
+                            }};
+                    }
+                    viewer = pannellum.viewer("tour", {
+                        "mouseZoom": false,
+                        "showControls": false,
+                        "disableKeyboardCtrl": true,
+                        "default": {
+                            "firstScene": 1,
+                            "sceneFadeDuration": 1000,
+                            //"autoLoad": true
+                        },
+                        "scenes": scene
+
+                        /*
+                        "pitch": -9.4,
+                        "yaw": 222.6,
+                        "type": "info",
+                        "text": "Art Museum Drive"*/
+                    });
+
+                    tourNameEl.innerHTML = tour.name;
+
+                } else {
+                    
+                    console.log("No such document!");
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
+        }
+
+        function addMoreImages() {
+            window.location.href = `add.html?id=${tourId}`;
+        }
+
+        function guidGenerator() {
+            var S4 = function() {
+                return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+            };
+            return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+        }
+
+        function selectScene(id) {
+            previousScene = activeHotspot != -1 ? activeHotspot : 1;
+            activeHotspot = id;
+            document.querySelectorAll(`*[data-information-id]`).forEach((el) => {
+                el.classList.remove("border-2", "border-blue-500");
+            });
+            document.querySelector(`*[data-information-id='${id}']`).classList.add("border-2", "border-blue-500");
+
+            if (activeHotspot != -1) {
+                document.querySelector("button[data-action-id='unselectScene']").classList.remove("hidden");
+            } else if (activeHotspot == -1){
+                document.querySelector("button[data-action-id='unselectScene']").classList.add("hidden");
+            }
+        }
+
+        function unselectScene() {
+            activeHotspot = -1;
+            previousScene = -1;
+
+            document.querySelectorAll(`*[data-information-id]`).forEach((el) => {
+                el.classList.remove("border-2", "border-blue-500");
+            });
+
+            document.querySelector("button[data-action-id='unselectScene']").classList.toggle("hidden");
+        }
+
+        function unselectHotspot() {
+            document.querySelector("div[data-container-id='hotspotActions']").classList.toggle("hidden");
+
+            hotspotSelected = {}
+        }
+
+        function removeHotspot() {
+            viewer.removeHotSpot(hotspotSelected.hotspotId, viewer.getScene());
+
+            document.querySelector("div[data-container-id='hotspotActions']").classList.toggle("hidden");
+
+            hotspotSelected = {}
+
+            saveChanges();
+        }
+
+        function performHotspotAction() {
+            viewer.loadScene(hotspotSelected.sceneId);
+
+            document.querySelector("div[data-container-id='hotspotActions']").classList.toggle("hidden");
+            hotspotSelected = {};
+
+            saveChanges();
+        }
+
+        function handler(e, args, hotspotId) {
+            let sceneId = args.targetScene;
+
+            hotspotSelected = {
+                sceneId,
+                hotspotId
+            };
+
+            document.querySelector("div[data-container-id='hotspotActions']").classList.toggle("hidden");
+        }
+
+        function setChanges(pitch, yaw) {
+            if (!viewer.getConfig().scenes[activeHotspot]) {
+                viewer.addScene(activeHotspot, {
+                    pitch: 0,
+                    yaw: 0,
+                    targetPitch: 0,
+                    targetYaw: 0,
+                    type: "equirectangular",
+                    panorama: document.querySelector(`*[data-information-id='${activeHotspot}'] img`).getAttribute("src"),
+                });
+            }
+
+            viewer.addHotSpot({
+                id: guidGenerator(),
+                pitch,
+                yaw,
+                type: "scene",
+                text: "Go",
+                clickHandlerArgs: {
+                    targetScene: activeHotspot
+                },
+                clickHandlerFunc: function(e, args) {
+                    handler(e, args, this.id);
+                }
+            }, viewer.getScene());
+
+            /* viewer.getConfig().scenes[viewer.getScene()].hotSpots[viewer.getConfig().scenes[viewer.getScene()].hotSpots.length - 1]
+            viewer.getConfig().scenes[viewer.getScene()].hotSpots[viewer.getConfig().scenes[viewer.getScene()].hotSpots.length - 1].clickHandlerFunc = (e, id) => {
+                
+                console.log(this.id); 
+            } */
+
+            saveChanges();
+        }
+
+        async function attachListener() {
+            await initTour();
+            viewer.on("mousedown", function(e) {
+                const [pitch, yaw] = viewer.mouseEventToCoords(e);
+
+                if (e.which == 2 && activeHotspot != -1) {
+                    setChanges(pitch, yaw);
+                }
+            });
+
+            viewer.loadScene(1);
+        }
+
+        attachListener();
+    
+        
+    </script>
+</body>
+</html>

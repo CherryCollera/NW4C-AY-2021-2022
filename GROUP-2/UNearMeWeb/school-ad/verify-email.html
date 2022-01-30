@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U-Near Me | Verify Email</title>
+
+    <!-- Link to Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/2618f471eb.js" crossorigin="anonymous"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;700&display=swap');
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: 'Readex Pro', sans-serif;
+        }
+
+        .content{
+            height: 100vh;
+            background-color: rgba(92, 203, 255);
+        }
+        .btn{
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex justify-content-center align-items-center content">
+        <div class="card text-dark bg mb-3" style="max-width: 50rem;">
+            <div class="card-header">
+                <button type="button" class="btn" id="gotoHome" style="color: black;"><i class="fas fa-arrow-left"></i></button>Home</div>
+            <div class="card-body p-4">
+                <h3 class="card-title">Verify your Email</h3>
+                <p class="card-text">We've sent you an Email with a verification link.</p>
+                <!-- <input type="email" class="form-control" name="email" id="email"> -->
+                <button type="button" class="btn btn-warning col-12" id="resend-verification">Resend verification Email</button>
+                <p class="mt-3 text-center" id="countdown-container"></p>
+            </div>
+        </div>
+    </div>
+    
+
+    
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js"></script>
+
+  <!-- Link to firebase config -->
+  <script type="text/javascript" src="/script/firebase-config.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
+    crossorigin="anonymous"></script>
+
+<!-- Jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- JS -->
+<script src="/school-ad/js/verify-email.js"></script>
+
+
+
+
+</body>
+</html>

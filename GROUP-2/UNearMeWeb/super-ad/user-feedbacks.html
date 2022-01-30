@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U-Near Me</title>
+    <link rel="icon" href="/img/unearme_home.png">
+    <!-- Link to Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/2618f471eb.js" crossorigin="anonymous"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;700&display=swap');
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: 'Readex Pro', sans-serif;
+        }
+        body{
+            min-height: 100vh;
+            background-color: #fff;
+        }
+        .navbar{
+            width: 250px;
+            height: 100%;
+            position: fixed;
+            margin-left: -300px;
+            background-color: rgba(92, 203, 255);
+            transition: 0.4s;
+        }
+        .nav-link{
+            font-size: 1.25rem;
+        }
+        .nav-link:active,
+        .nav-link:focus,
+        .nav-link:hover{
+            background-color: rgb(72, 183, 235);
+        }
+        #content{
+            transition: 0.4s;
+        }
+
+        #sidebar.active {
+            margin-left: 0;
+        }
+        #content.active {
+            margin-left: 250px;
+        }
+        #sidebar ul li.active > a,
+        a[aria-expanded="true"] {
+        background-color: rgb(72, 183, 235);
+        
+        }
+        .btn-color{
+            background-color: rgb(62, 173, 225);
+            color: #ffffff;
+        }
+  </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand d-flex flex-column align-item-start active p-2" id="sidebar">
+        <a href="#" class="navbar-brand text-light mt-5">
+            <div class="display-6 font-weight-bold">UNEARME</div>
+        </a>
+        <ul class="navbar-nav d-flex flex-column mt-5 w-100">
+            <li class="nav-item w-100 ">
+                <a href="home.html" class="nav-link text-light ps-4">Request</a>
+            </li>
+            <li class="nav-item w-100 active">
+                <a href="#" class="nav-link text-light ps-4">User's Feedback</a>
+            </li>
+        </ul>
+    </nav>
+   <section class="p-5 active" id="content">
+       <button type="button" class="btn btn-color my-4" id="toggleSidebar"><i class="fas fa-bars"></i> </button>
+       <div class="card">
+           <div class="card-body" style="background-color: rgba(92, 203, 255);">
+               <h4> <strong>Feedbacks</strong></h4>
+           </div>
+       </div>
+       <div id="reportsContainer" style="margin-top: 1rem;"></div>
+
+   </section>
+
+   <!-- Modal -->
+   <div class="modal fade" id="deleteFeedbackModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Feedback</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Are you sure you want to delete this feedback?
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="yesDelete" class="btn btn-primary">Yes</button>
+        </div>
+    </div>
+    </div>
+</div>
+   
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-storage.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that yosu want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js"></script>
+
+    <!-- Link to firebase config -->
+    <script type="text/javascript" src="/script/firebase-config.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
+    crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        
+        $('#toggleSidebar').on('click', function() {
+            $('#sidebar').toggleClass('active');
+            $('#content').toggleClass('active');
+        });
+
+        const auth = firebase.auth();
+        const db =  firebase.firestore();
+        var feedback_id;
+
+        // Firebase Authentication
+        auth.onAuthStateChanged(function(user) {
+            if(user){
+                db.collection('super_admin').doc(user.uid).get()
+                .then(super_admin =>{
+                if (!super_admin.exists) {
+                    
+                    window.location.assign("/index.html");
+                } 
+            })
+            .catch(function (error) {
+                $(".loader").fadeOut()
+                window.alert("Error : " + error.message);
+            })
+            }
+        });
+    });
+    const auth = firebase.auth();
+        const db =  firebase.firestore();
+
+       
+        window.onload = loadReports();
+        
+        function loadReports() {
+            db.collection('user_feedbacks').onSnapshot(function (snapshot) {
+                document.getElementById('reportsContainer').innerHTML = '';
+                if(!snapshot.empty){
+                    snapshot.forEach(function (taskValue) {
+                        var date = taskValue.data().time.seconds
+
+                        var newDate = new Date(date * 1000)
+                        var m,d,y, formattedDate;
+
+                        d = newDate.getDate()
+                        m = newDate.getMonth()
+                        y = newDate.getFullYear()
+
+                        formattedDate = m+1+'/'+d+'/'+y
+                        $('#reportsContainer').append(`
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <h5 class="card-title"> ${taskValue.data().user_email}</h5>
+                                        <button type="button" class="btn btn-danger" id="${taskValue.id}" value="${taskValue.id}">Delete</button>       
+                                    </div>
+                                    <h6 class="card-subtitle mb-2 text-muted">${formattedDate}</h6>
+                                    <p class="card-text"> <strong>${taskValue.data().subject}</strong> <br> ${taskValue.data().description}  </p>
+                                    
+                                </div>
+                            </div>
+                            `);
+                            $("#"+taskValue.id).on('click', function(){
+                                    feedback_id = $(this).val();
+                                    $('#deleteFeedbackModal').modal('show');
+                                })
+
+
+                        })
+
+                       
+                } else {
+                    document.getElementById('reportsContainer').innerHTML += `
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title"> No Data Found</h5>
+                                </div>
+                            </div>
+                            `;
+                }
+            })
+            
+        }
+
+        $('#yesDelete').on('click',function(){
+        $('#deleteFeedbackModal').modal('hide');
+        db.collection('user_feedbacks').doc(feedback_id).delete();
+    //   console.log(feedback_id);  
+    })
+
+
+
+    </script>
+    
+</body>
+</html>
