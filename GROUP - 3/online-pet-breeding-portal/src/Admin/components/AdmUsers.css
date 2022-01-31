@@ -1,0 +1,254 @@
+.adm-container{
+  margin: 0 0 0 15vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.admUTabs {
+  display: flex;
+  height: fit-content;
+  padding-top: 0.35vh;
+  z-index: 2;
+}
+.admTab {
+  padding: 2vh;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 4vh;
+  justify-content: center;
+  width: 20vh;
+  font-size: 2.5vh;
+  border-right: 0.35vh solid var(--borderColor);
+  border-bottom: 0.35vh solid var(--borderColor);
+  font-weight: 600;
+}
+.o {
+  border-bottom: 0.35vh solid var(--bodyColor);
+}
+.admTab > span {
+  font-size: 2.25vh;
+  padding: 0 0.75vh;
+}
+.tabContent {
+  margin: -0.3vh 0 0 0;
+  padding: 1vh;
+  height: 100%;
+  flex-direction: column;
+  display: flex;
+  z-index: 1;
+}
+.credwarper{
+  z-index: 10 !important;
+  border: 1px solid red !important;
+  position: fixed !important;
+  top: 17vh !important;
+  height: 100% !important;
+  cursor:default !important;
+  background-color: rgba(0, 0, 0, 0.33) !important;
+}
+.allUTab {
+  display: grid;
+  text-transform: capitalize !important;
+  grid-template-columns: repeat(20, 1fr);
+  border-bottom: 0.25vh solid var(--borderColor);
+  border-left: 0.35vh solid var(--borderColor);
+  border-right: 0.35vh solid var(--borderColor);
+  height: fit-content;
+  width: 100%;
+  font-size: 2vh;
+}
+.ViewDocs{
+  transition: all .3s ease;
+}
+.ViewDocs:hover{
+  color: var(--primaryColor);
+  text-decoration: underline;
+  transition: all .3s ease;
+}
+.credent{
+  height: 75vh !important;
+  width: 80% !important;
+  transform: translateY(-10%);
+}
+.credHead{
+  margin: 0  auto !important;
+  font-size:3vh !important;
+  padding: 0 !important;
+}
+.btnDiv{
+  display: flex !important;
+  align-items: center !important;
+
+  justify-content: space-around !important;
+width: 100% !important;
+
+height: fit-content !important;
+}
+.btnDiv > button{
+  margin: 1vh auto ;
+  border-radius: 1vh;
+  font-size: 2.5vh;
+  padding: 1vh;
+  outline: none;
+  color: var(--white);
+  transition: all .3s ease-in-out;
+  cursor:  pointer !important;
+  width: 30%;
+}
+.btnDiv > button.ofl{
+  background-color: firebrick;
+  border: .25vh solid red;
+}
+.btnDiv > button.onl{
+  border: .25vh solid greenyellow;
+  background-color: green;
+}
+.btnDiv > button:hover{
+  transition: all .3s ease-in-out;
+  filter: brightness(.8) !important;
+}
+.hideCred{
+  font-size: 5vh;
+  right: 2.75vh;
+  position: absolute;
+  color: firebrick;
+}
+.hideCred:hover{
+  color: red;
+}
+.credit{
+height: 100% !important;
+display: flex !important;
+  width: 100% !important;
+}
+.allUTab div,
+.allUTab span {
+  height: 4vh;
+  cursor: pointer;
+  font-size: 2.25vh;
+  margin: -0.02vw -0.2vw -0.02vw -0.2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.allUTab div {
+  border-top: 0.3vh solid var(--borderColor);
+  background-color: var(--boColor);
+  user-select: none;
+  border-left: 0.3vh solid var(--borderColor);
+  border-right: 0.3vh solid var(--borderColor);
+  border-bottom: 0.3vh solid var(--borderColor);
+  margin: -0.2vw -0.2vw 2vh -0.2vw;
+}
+.allUTab div i {
+  margin: 0 0.5vh;
+  font-size: 2vh;
+}
+.allUTab span {
+  border-left: 0.1vh solid var(--borderColor);
+  border-right: 0.1vh solid var(--borderColor);
+  text-overflow: clip;
+  font-size: 2vh;
+  display: flex;
+  filter: brightness(1.2);
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+.allUTab span a:hover {
+  text-decoration: underline;
+}
+.allUTab span .pen,
+.allUTab span .ofl,
+.allUTab span .onl {
+  background-color: green;
+  border: 0.35vh solid darkgreen;
+  padding: 0.25vh 0;
+  width: 10vh;
+  font-size: 1.5vh;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  text-align: center;
+  height: 1.75vh;
+  justify-content: center;
+  border-radius: 0.5vh;
+  font-weight: 600;
+  color: lightgray;
+  transition: all 350ms ease-in-out;
+}
+
+.allUTab span .ofl {
+  background-color: firebrick;
+  border: 0.35vh solid darkred;
+}
+.allUTab span .pen {
+  background-color: darkviolet;
+  border: 0.35vh solid purple;
+}
+
+.allUTab span .pen:hover,
+.allUTab span .ofl:hover,
+.allUTab span .onl:hover {
+  filter: grayscale(0.5);
+  transition: all 350ms ease-in-out;
+}
+#pendAct {
+  justify-content: space-evenly;
+}
+#search {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  cursor: default;
+  justify-content: flex-end;
+}
+#search > .admSear {
+  display: flex;
+  padding: 0;
+  height: 100%;
+  border-radius: 1vh;
+  margin: 0;
+  align-items: center;
+  transition: all 350ms ease-in-out;
+  border: 0.25vh solid var(--borderColor);
+}
+#search > .admSear:hover,
+#search > .admSear:focus {
+  border: 0.25vh solid var(--primaryColor);
+  transition: all 350ms ease-in-out;
+}
+#search > .admSear > .admsearch {
+  outline: none !important;
+  cursor: text;
+  font-size: 2vh;
+  margin: 2vh;
+  border: none !important;
+}
+#search > .admSear > .search-btn {
+  cursor: pointer;
+  display: flex;
+  width: 7vw;
+  height: 100%;
+  text-align: center;
+  font-size: 2.25vh;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primaryColor);
+  color: var(--white);
+}
+#search > .admSear > .search-btn:hover {
+  transition: all 350ms ease-in-out;
+}
+.actsetting {
+  text-decoration: none;
+}
+.actsetting:hover {
+  text-decoration: underline;
+}
+.noUserTab{
+  padding:2vh;
+  font-size: 2vh;
+  text-align: center;
+}

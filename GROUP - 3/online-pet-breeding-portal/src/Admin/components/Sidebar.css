@@ -1,0 +1,48 @@
+.sideB {
+  border-right: 0.25vh solid var(--borderColor);
+  filter: drop-shadow(0.5vh 0.5vh 0.5vh var(--borderColor));
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  padding: 2vh 0;
+  top: 7vh;
+  width: 15vw;
+  background-color: var(--boColor);
+}
+.sideB h1 {
+  font-size: 5vh;
+  padding: 0 1vh;
+}
+.sideB ul {
+  margin: 2vh 0;
+  border-top: 0.15vh solid var(--borderColor);
+  border-bottom: 0.15vh solid var(--borderColor);
+  list-style: none;
+}
+.sideB ul li {
+  border-top: 0.15vh solid var(--borderColor);
+  cursor: pointer;
+  border-bottom: 0.15vh solid var(--borderColor);
+  display: flex;
+  align-items: center;
+  font-size: 3vh;
+  transition: all 350ms ease-in-out;
+}
+.sideB ul li:hover {
+  background-color: var(--primaryColor);
+  color: var(--white);
+  transition: all 350ms ease-in-out;
+}
+.sideB ul li .linkaadm{
+  padding: 2vh 4vh;
+  align-items: center;
+  text-decoration: none;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.sideB ul li span {
+  font-size: 2.25vh;
+  padding: 0 1vh;
+}

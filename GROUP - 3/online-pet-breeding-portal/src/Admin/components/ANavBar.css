@@ -1,0 +1,72 @@
+#adminNav > .nav-wrapper > a {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+#adminNav > .nav-wrapper {
+  width: 100%;
+  padding: 0 10vh;
+}
+#adminNav > .nav-wrapper > .logo2 {
+  display: none;
+}
+#adminNav {
+  z-index: 99;
+}
+#adminNav > .nav-wrapper > .ADMback .a {
+  border-radius: 1.5vh;
+  pointer-events: visible;
+  transition: all 350ms ease-in-out;
+  padding: 2vh 4vh;
+}
+#adminNav > .nav-wrapper > .ADMback .a:hover {
+  color: var(--white);
+  cursor: pointer;
+  background-color: var(--primaryColor);
+  transition: all 350ms ease-in-out;
+}
+
+#adminNav > .nav-wrapper > .ADMback {
+  position: absolute;
+  font-size: 4vh;
+  color: var(--primaryColor);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.Admprofile{
+  display: flex;
+  font-size:2.5vh;
+  height:7vh;
+  right: 1vh;
+  position: absolute;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  width:20vh;
+}
+.admPIc{
+  color:var(--primaryColor);
+  transition: all 350ms ease-in-out;
+}
+.admPIc:hover{
+  color:var(--blaclk);
+  cursor: pointer;
+  transition: all 350ms ease-in-out;
+}
+.Admprofile > span{
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+
+}
+
+@media screen and (max-width: 800px) {
+  #adminNav > .nav-wrapper > .logo2 {
+    display: flex;
+  }
+  #adminNav > .nav-wrapper > .logo1 {
+    display: none;
+  }
+}

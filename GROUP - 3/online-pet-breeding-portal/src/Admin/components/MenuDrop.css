@@ -1,0 +1,37 @@
+.ActSetDiv {
+  position: absolute;
+  height: fit-content !important;
+  border: .25vh solid var(--blaclk);
+  background-color: var(--borderColor);
+  filter: brightness(0.85);
+  font-size: 1.65vh;
+  margin-right: 2vh;
+  margin-top: -12vh;
+  width: 20vh;
+  border-radius: 1vh;
+  flex-direction: column;
+  list-style: none;
+  overflow: hidden;
+  z-index: 9;
+}
+.ActSetDiv:after {
+  content: " ";
+  position: absolute;
+  z-index: -1;
+  border-top: none;
+  border-left: 1vh solid transparent;
+  border-right: 1vh solid transparent;
+  border-bottom: 2vh solid var(--borderColor);
+}
+.ActSetDiv li {
+  transition: all 0.5s ease-in-out;
+  background-color: inherit;
+  padding: 1vh 1.5vh;
+  display: flex;
+  z-index: 10;
+  align-items: center;
+}
+.ActSetDiv li:hover {
+  transition: all 0.5s ease-in-out;
+  filter: brightness(0.9);
+}

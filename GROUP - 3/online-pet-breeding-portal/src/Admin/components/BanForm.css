@@ -1,0 +1,58 @@
+.ban-wrapper {
+  justify-content: center;
+  display: flex;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.1);
+  top: 7.5vh;
+  left: 15vw;
+  bottom: 0;
+  right: 0;
+}
+.banForm {
+  display: flex;
+  width: 50%;
+  z-index: 10;
+  margin-top:12vh;
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+}
+.banSelect{
+  font-size: 2.25vh;
+  margin-left: -.2vh;
+  width: 70%;
+}
+.banForm > .log-in {
+  padding: 2vh;
+  font-size: 2.25vh;
+}
+.banForm > .log-in > h1 {
+  justify-content: center;
+  color: firebrick;
+  font-size: 4vh;
+  width: 100%;
+}
+.banForm > .log-in > span {
+  display: flex;
+  font-size: 2vh;
+  flex-direction: row;
+  margin: 0.5vh 0;
+}
+.banForm > .log-in > span > b {
+  width: 12vh;
+  height: fit-content;
+  display: flex;
+}
+.banForm > .log-in > span > input {
+  width: 0%;
+}
+.banForm > .log-in > .divBtrn > button {
+  width: 35%;
+  height: 4vh;
+  font-size: 2.25vh;
+}
+.divBtrn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
