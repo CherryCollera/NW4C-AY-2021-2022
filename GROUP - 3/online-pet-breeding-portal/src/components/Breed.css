@@ -1,0 +1,220 @@
+.breedingBtn{
+    position:fixed;
+    bottom:10vh;
+    right: 10vh;
+    z-index: 2;
+    display: flex;
+color: var(--blaclk);
+align-items: center;
+justify-content:center;
+transition:all .35s ease-in-out;
+cursor: pointer;
+}
+.breedBG1{
+    position:absolute;
+font-size: 17vh;
+z-index: 1;
+}
+.breedBG2{
+margin-top:1vh;
+    color: var(--primaryColor);
+z-index: 2;
+    font-size: 5vh;
+}
+.breedingBtn:hover, .onwe{
+    filter:drop-shadow(0 0 1vh var(--primaryColor));
+transition:all .35s ease-in-out;
+}
+.disabledBreedBtn{
+    pointer-events: none;
+    filter: saturate(.5);
+}
+.breed-form{
+    zoom: .9;
+position: fixed;
+top: 7vh;
+left: 0;
+right: 0;
+padding-top: 5vh;
+bottom:  0;
+z-index: 4;
+background-color: rgb(240, 240, 240);
+display:flex;
+align-items: center;
+justify-content: center;
+}
+.breeding-wrapper{
+    width: 95%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.breed-header{
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    padding:1vh;
+}
+.breedtitle{
+    color: var(--blaclk);
+    font-size: 10vh;
+    padding:.5vh;
+    margin:-3vh auto;
+    width: 40%;
+    font-weight: 600;
+    border-radius: 1vh;
+}
+.breedHEart{
+    position:static;
+    pointer-events: none;
+    margin-top: -15vh;
+}
+.breed-close{
+    font-size:5.5vh;
+    right:  0vh;
+    top:2vh;
+    background-color: transparent;
+    border-radius: 1vh;
+    width: 5%;
+    color: var(--primaryTextColor);
+    cursor: pointer;
+    border: .5vh solid transparent;
+    position: absolute;
+    transition:all .35s ease-in-out;
+}
+.breed-close:hover{
+color: var(--blaclk);
+    transition:all .35s ease-in-out;
+}
+.breed-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.breeds.box{
+    /* border: .25vh solid var(--blaclk); */
+    border: none;
+    border-radius: 1vh;
+    width: 35%;
+
+}
+.NoSpeciesDiv{
+    height:50%;
+    font-weight: 400;
+    font-size: 2.5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.breeds.Opt{
+width: 25%;
+margin: 0 3vh auto 3vh;
+border-radius: 1vh;
+padding: 0 2vh;
+}
+.box > h1{
+    width: 100%;
+    padding:.75vh 0;
+    font-size:3vh;
+    text-align: center;
+    border-bottom: .35vh solid var(--blaclk);
+    border-top: .35vh solid var(--blaclk);
+    color: var(--blaclk);
+}
+.btn_DIV{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.breed_BTN,.snip_Btn{
+    position:static;
+    margin:3vh 0;
+    font-weight: 600;
+    font-family:var(--primaryFont);
+    font-size: 2.5vh;
+    padding: 1vh 2vh;
+    cursor: pointer;
+    border-radius:1vh;
+    transition: 350ms ease-in-out;
+    background-color: var(--primaryTextColor);
+    color: var(--bodyColor); 
+    border: .35vh solid var(--primaryTextColor); 
+}
+.breed_BTN:hover,.snip_Btn:hover{
+    transition: 350ms ease-in-out;
+    background-color: transparent;
+    color: var(--blaclk); 
+    border: .35vh solid var(--blaclk); 
+}
+.Breed_field{
+    display: flex;
+    margin:3vh auto;
+    flex-direction:column;
+}
+.breedBtn_title{
+    position: absolute;
+    user-select: none;
+    margin-bottom: -20vh;
+}
+.breedInp{
+    background-color: transparent;
+    outline: none;
+    border: .35vh solid var(--primaryTextColor);
+    text-align: center;
+    padding: .5vh;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 2.5vh;
+    color: var(--primaryTextColor);
+}
+.breedInp:hover{
+    border: .35vh solid var(--primaryTextColor);
+
+}
+.label_breed{
+    position: fixed;
+    width: 15%;
+    font-weight: 600;
+    font-size: 2.5vh;
+    pointer-events: none;
+    color: var(--primaryTextColor);
+background-color: rgb(240, 240, 240);
+display: flex;
+    margin:auto;
+align-items: center;
+justify-content: center;
+    transform:translate(29%, 21%);
+
+}
+.selBreed{
+    border: .5vh solid var(--primaryTextColor);
+    width: 10%;
+    transform: translate(62%, -62%) scale(0.6) !important;
+
+}
+.selectDown{
+    position: absolute;
+    color: var(--primaryTextColor);
+    font-size: 3.5vh;
+    pointer-events: none;
+    transform: translate(1230%, 25%);
+}
+.breedAvatarDiv{
+    justify-content: flex-start;
+    width: 100%;    
+    height: 48%;
+    padding: 1vh ;
+}
+.breedSelected{
+    width: 100%;
+    height: 25vh;
+    display: flex;
+    justify-content: center;
+}

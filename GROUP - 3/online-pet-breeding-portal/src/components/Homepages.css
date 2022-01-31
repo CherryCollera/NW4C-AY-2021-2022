@@ -1,0 +1,191 @@
+.container {
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  color: var(--blaclk);
+  width: 99.7vw;
+  justify-content: center;
+  align-items: center;
+}
+.nav-pages {
+  margin: auto;
+  width: 90%;
+  display: flex;
+  user-select: none;
+  justify-content: space-evenly;
+  margin-bottom: 20vh;
+  margin-top: -10vh;
+  padding-top: 10vh;
+}
+/* .tis{
+  width: 50%;
+  align-items: center;
+  margin-top: 2vh;
+  padding: 1vh;
+  border-radius: 1vh;
+  justify-content: center;
+  overflow: hidden;
+  height: 88vh;
+  background-color: #262626;
+  display: flex;
+}
+.portrait{
+  font-size: 2vh;
+  width: 100%;
+  text-align: justify;
+  height: 100%;
+  line-height: url('https://media.istockphoto.com/photos/border-collie-dog-portrait-with-a-hiding-cat-behind-picture-id1306406393?b=1&k=20&m=1306406393&s=170667a&w=0&h=AOYk1c368JcuXsaopchHrc6v8YFHs3TdagTz_EiDXQc=')   no-repeat center center/cover;
+  -webkit-background-clip: text;
+  -webkit-2vh;
+  object-fit: center;
+  filter: saturate(0);
+  background: text-fill-color: rgba(255,255,255,0);
+} */
+.tis {
+  width: 50%;
+  padding-left: 1.1vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.los {
+  width: 50%;
+  height: 75vh;
+  display: flex;
+  margin: 7.5vh 0 5vh 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.divsi{
+  text-align: center;
+  justify-content: center;
+  height: fit-content;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+.divsi > h1{
+  font-size: 7vh;
+  color: var(--primaryTextColor);
+}
+.divsi > p{
+  width: 90%;
+  text-align: justify;
+  
+  font-size: 2.8vh;
+  font-family: var(--secondaryFont);
+  font-weight: 400;
+}
+.til {
+  width: 100%;
+  font-size: 10.5vh;
+  margin: 0;
+}
+.til2 {
+  font-size: 2.8vh;
+  width: 92%;
+  font-family: var(--secondaryFont);
+  font-weight: 400;
+}
+.teamImage {
+  margin: 2.5vh auto;
+  width: 20vh;
+  height: 19vh;
+  transition: all 450ms ease-in-out;
+  color: var(--primaryColor);
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.2vh solid var(--borderColor);
+}
+.about_us{
+  width: 100%;
+  margin-bottom: 3vh;
+  grid-column: 1/5;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gridTeam{
+  margin: auto;
+  column-gap: 4vh;
+  row-gap: 4vh;
+  display: grid;
+  width: 90%;
+  grid-template-columns: repeat(4, 1fr);
+}
+.about_us > p{
+  width: 70%;
+  text-align: justify;
+  font-size: 2.25vh;
+}
+.about_us > h1{
+  font-size: 5vh;
+}
+#team {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  padding: 8.5vw 0 10vw 0;
+  height: max-content;  
+  height: fit-content;
+}
+@media screen and (max-width: 1250px) {
+  #home {
+    flex-direction: column;
+    padding-top: 13vw;
+  }
+  .los {
+    margin-top: 5vw;
+  }
+  .tis,
+  .los {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .til {
+    text-align: center;
+    font-size: 7.75vh;
+  }
+  .til2 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .teamImage {
+    margin: 1% auto;
+  }
+.divsi > h1{
+  font-size: 4vh;
+}
+.til{
+  font-size: 5.85vh;
+}
+.divsi > p{
+  margin-bottom: 5vh;
+  font-size: 2.35vh;
+}
+  .tis {
+    margin-top: 5vw;
+    font-weight: 900;
+  }
+.gridTeam{
+  grid-template-columns: repeat(1, 1fr);
+}
+  #features {
+height: fit-content;
+  }
+  #about {
+    flex-direction: column;
+    padding-top: 20vh;
+  }
+#home{
+margin-bottom: 0;
+}
+}

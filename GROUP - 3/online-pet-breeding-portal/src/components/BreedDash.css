@@ -1,0 +1,49 @@
+.breedDash {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+.breedDash_header {
+  font-size: 3vh;
+}
+.breed_req-container {
+  list-style: none;
+  width: 100%;
+}
+.breedRecords {
+  cursor: pointer;
+  border: 0.25vh solid var(--borderColor);
+  border-radius: 1vh;
+  display: flex;
+  align-items: center;
+  padding: 0.5vh;
+  background-color: var(--white);
+  margin-bottom: 1vh;
+  height: 7vh;
+}
+.breedRecords:hover {
+  background-color: var(--bodyColor);
+  filter: saturate(0.6);
+}
+.breedRecords_span {
+  font-size: 1.8vh;
+  padding: 0 0.5vh;
+  width: 80%;
+}
+.noRecords {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10vh;
+}
+.breedBTn {
+  display: flex !important;
+}
+.breedBTn > a {
+  display: flex !important;
+  font-size: 1.75vh;
+  text-decoration: none;
+  height: 2.25vh !important;
+}

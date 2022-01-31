@@ -1,0 +1,74 @@
+.feedback-wrapper{
+    top: 7.5vh; 
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 20;
+    /* align-items: center; */
+    justify-content: center;
+    position: fixed;
+
+}
+.feebackForm{
+    margin-top: 14vh;
+    box-shadow: 0.5vw 0.5vw 0.5vw var(--borderColor);
+    width: 35% !important;
+    height: fit-content;
+}
+.feed_header{
+    width: 100%;
+    color: var(--blaclk);
+    text-align: center;
+}
+.feedClose{
+    position: absolute;
+    font-size:5.5vh;
+    margin: -1.25% 0 0  29%;
+    border-radius: 1vh;
+    width: 5%;
+    color: var(--primaryTextColor);
+    cursor: pointer;
+    transition:all .35s ease-in-out;
+}
+.feedClose:hover{
+color: var(--red);
+    transition:all .35s ease-in-out;
+}
+.star_rate_container{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin: 2vh auto;
+    justify-content: center;
+}
+.star_rate_container > p{
+    margin-top: 4vh;    
+}
+.star_rate_container > textarea{
+     text-align: center;
+     width: 100%;
+    }
+.star_rate_container > button{
+    padding: 2.25vh;
+    width: 97%;
+    font-size: 2.2vh;
+}
+
+.img{
+    margin: auto;
+  height: 5vh;
+  width: 6vh;
+  display: flex;
+  color: var(--bodyColor);
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 2.75vh;
+  border: 0.1vw solid var(--borderColor);
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}

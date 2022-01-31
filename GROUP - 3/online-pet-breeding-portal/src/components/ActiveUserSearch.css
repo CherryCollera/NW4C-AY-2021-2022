@@ -1,0 +1,22 @@
+.dropUSer {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+  cursor: pointer;
+  padding: 0.51vh;
+  background-color: var(--bodyColor);
+  height: fit-content;
+  transition: all 350ms ease-in-out;
+}
+
+.dropUSer:hover {
+  background-color: var(--boColor);
+  filter: brightness(0.9);
+  transition: all 350ms ease-in-out;
+}
+
+.dropUSer > span {
+  font-size: 2.25vh;
+}

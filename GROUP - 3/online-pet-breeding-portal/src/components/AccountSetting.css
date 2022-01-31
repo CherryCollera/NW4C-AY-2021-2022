@@ -1,0 +1,137 @@
+.acc-setting {
+  width: 95%;
+  margin: auto;
+  color: var(--blaclk);
+}
+.acc-setting > h1 {
+  border-bottom: 0.3vh solid var(--borderColor);
+  font-size: 3.5vh;
+  margin: 1vh 0;
+  padding-bottom: 1.25vh;
+}
+.set-element {
+  padding: 1.75vh;
+  cursor: pointer;
+  display: flex;
+  transition: all 0.25s ease-in;
+}
+.setElement {
+  padding: 1.75vh;
+  cursor: pointer;
+  display: flex;
+}
+.set-element:hover {
+  background-color: var(--blockerBg);
+  transition: all 0.25s ease-in;
+}
+.set-div {
+  margin: 1vh 0;
+  padding: 0;
+  border-bottom: 0.3vh solid var(--boColor);
+}
+.strong-set {
+  width: 25%;
+}
+.content {
+  width: 60%;
+  color: var(--blaclk);
+}
+.link {
+  width: 15%;
+  display: flex;
+  color: var(--primaryTextColor);
+  justify-content: flex-end;
+  align-items: center;
+}
+.link > span {
+  color: var(--blaclk);
+}
+.link > span:hover {
+  color: var(--primaryTextColor) !important;
+  text-decoration: underline;
+}
+.formChange {
+  padding: 1vh;
+  border: 0.25vh solid var(--blaclk);
+}
+.formChange > .strong-set {
+  width: 100%;
+  display: flex;
+  border-bottom: 0.25vh solid var(--borderColor);
+}
+.field_box {
+  flex-direction: column;
+  display: flex;
+  width: 100%;
+  border-bottom: 0.25vh solid var(--borderColor);
+  padding-bottom: 1.5vh;
+  margin: 1.75vh auto;
+}
+.field-wrapper-set {
+  font-size: 2.25vh;
+  width: 55%;
+  display: flex;
+  justify-content: space-between;
+  margin: 1vh auto;
+  align-items: center;
+}
+.field_box > .btns {
+  justify-content: space-around !important;
+}
+.field_box > .btns > button {
+  outline: none;
+  width: 30%;
+  font-weight: 600;
+  border: 0.25vh solid var(--blaclk);
+  border-radius: 0 !important ;
+  font-size: 2vh;
+  color: var(--blaclk);
+  cursor: pointer;
+  padding: 1vh;
+}
+.field_box > .btns > button:hover,
+.field_box > .btns > .can {
+  background-color: var(--blaclk);
+  color: var(--white);
+}
+.field_box > .btns > .can:hover {
+  background-color: transparent;
+  color: var(--blaclk);
+}
+.field-wrapper-set > input,
+.field-wrapper-set > select {
+  border-radius: 0;
+  padding: 0.5vh;
+  width: 75%;
+  outline: none;
+  border: 0.3vh solid var(--borderColor);
+  align-self: flex-end;
+}
+.field-wrapper-set > select {
+  margin-right: 0 !important;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .acc-setting > h1 {
+    font-size: 2.5vh;
+    padding-left: 1vh;
+  }
+  .acc-setting {
+    width: 98% !important;
+    margin: auto;
+  }
+  .set-element,
+  .setElement {
+    margin: 0;
+    padding: 0;
+    font-size: 1.5vh !important;
+  }
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+}

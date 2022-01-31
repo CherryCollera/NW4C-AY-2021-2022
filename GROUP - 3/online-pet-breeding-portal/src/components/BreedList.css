@@ -1,0 +1,83 @@
+.breed{
+    width: fit-content;
+    margin: .5vh 0 0 1vh !important;
+    font-size: 2vh !important;
+}
+.breed > span {
+    margin-top: -.5vh !important;
+    font-size: 1.5vh;
+}
+.breed_desc_warrper{
+    margin-top:2vh ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.breed_desc_warrper > .breed_desc {
+    font-size: 2vh;
+    color: var(--blaclk);
+    margin: 0;
+    width: 70%;
+
+}
+
+.breed_desc_warrper > .breed_desc > a{
+    text-decoration: none;
+    margin: auto .5vh;
+    font-weight: 600;
+    transition: all .3s ease-in-out;
+}
+.breed_desc_warrper > .breed_desc > a:hover{
+    text-decoration: underline;
+    color: var(--primaryTextColor);
+    transition: all .3s ease-in-out;
+}
+.Noas{
+    position: absolute;
+    font-size: 3.5vh;
+    width: 91.8%;
+    padding: 3vh;
+    text-align: center;
+    margin: auto;
+}
+.breed_desc_btns{
+    width: fit-content;
+    max-width: 29%;
+    justify-content: space-evenly;
+    flex-direction: column;
+    display: flex;
+    position: absolute;
+    right: 2.5vh;
+    height: 80%;
+    align-items: center;
+}
+.tableData_btn{
+    border-radius: 1vh;
+    color:var(--white);
+    font-weight: 600;
+    font-size: 2vh;
+    outline: none;
+    padding: .5vh 2vh;
+    cursor: pointer;
+    transition: all .3s ease-in-out ;
+}
+.tableData_btn:hover{
+    transition: all .3s ease-in-out ;
+    filter: saturate(.65);
+}
+.successBtn{
+border: .35vh solid green;
+    background-color: var(--green);
+}
+.dangerBtn{
+    border: .35vh solid firebrick;
+    background-color: var(--red);
+} 
+.breed_desc > .descRate{
+    margin: -0.25vh auto 2vh auto;
+    font-size: 2vh;
+}
+.breed_desc > .unrated{
+    margin: 1vh auto;
+}

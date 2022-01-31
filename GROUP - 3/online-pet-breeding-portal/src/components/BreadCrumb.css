@@ -1,0 +1,57 @@
+.breadC {
+  margin: auto;
+  user-select: none;
+  width: 100%;
+  margin: auto;
+  background-color: #eee;
+}
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  width: 50vw;
+  margin: auto;
+  background-color: #eee;
+  font-size: 2.5vh;
+  font-weight: bold;
+}
+ul.breadcrumb li {
+  display: inline;
+  color: var(--primaryTextColor);
+  transition: all 350ms ease-in-out;
+}
+ul.breadcrumb li + li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+ul.breadcrumb li a {
+  text-decoration: none;
+  transition: all 350ms ease-in-out;
+}
+ul.breadcrumb li a:hover {
+  transition: all 350ms ease-in-out;
+  color: black;
+}
+ul.breadcrumb li:last-child {
+  transition: all 350ms ease-in-out;
+  color: black;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 1100px) {
+  ul.breadcrumb {
+    width: 57vw;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  ul.breadcrumb {
+    width: 70vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  ul.breadcrumb {
+    width: 100%;
+    font-size: 2.25vh;
+  }
+}

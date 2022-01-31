@@ -1,0 +1,126 @@
+.petNfo {
+  font-size: 4vh;
+  text-align: left;
+  font-weight: 600;
+}
+.petAddDiv {
+  position: relative;
+  padding: 0vh 1vw 2.5vh 1vw;
+  display: grid;
+  margin: 5vh 0;
+  border-radius: 2vh;
+  border: 0.3vh solid var(--borderColor);
+  grid-template: subgrid;
+  justify-content: center;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 2.5vh;
+}
+.ApetBtn {
+  width: 40%;
+}
+.petBTrt {
+  display: flex;
+  width: 100vh;
+  margin-bottom: 10vh;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+}
+#petImgdiv {
+  display: flex;
+  border: none;
+  overflow: visible;
+}
+.petImg {
+  display: flex;
+  width: 45vh;
+  height: 22.75vh;
+  position: absolute;
+  margin: -5.5vh 0 0 -1.75vh;
+}
+.petImg > .RegImgDiv {
+  overflow: hidden;
+}
+.health-input{
+  display: flex;
+  align-items: center;
+}
+.health-inputa{
+  width: 50%;
+  height:5.5vh;
+  margin: 0 0 0 -1vh;
+}
+.petImg > .RegImgDiv > .RegImg_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.petImg > .RegImgDiv > .RegImg_wrapper > span {
+  display: flex;
+  align-items: center;
+  transition: all 350ms ease-in-out;
+}
+#petDel {
+  transition: all 350ms ease-in-out;
+  margin: -3vh auto -2vh auto;
+  height: fit-content;
+  border-color: firebrick;
+  color: firebrick;
+  background-color: transparent;
+}
+#petDel:hover {
+  background-color: red;
+  color: white;
+}
+
+@media screen and (max-width: 750px) {
+  .petAddDiv {
+    margin: 1vh -4vw;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+.petForm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 92%;
+  padding: 0 4% !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+.regForm-wrapper{
+  width: 95% !important;
+  flex-direction: column;
+  display: flex !important;
+}
+.formHead{
+  font-size: 3vh !important;
+}
+.subInfo{
+  margin-bottom: -2vh !important;
+}
+.petAddDiv{
+  column-gap: .5vh;
+  row-gap:0vh;
+  border: none;
+}
+.health-input{
+  padding: 0;
+}
+.health-input  label,
+  .health-input  input {
+  font-size: 2vh !important;
+}
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+
+}

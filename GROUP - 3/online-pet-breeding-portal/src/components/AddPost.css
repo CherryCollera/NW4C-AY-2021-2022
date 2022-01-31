@@ -1,0 +1,292 @@
+.tpAdp,
+.hr {
+  display: flex;
+  padding-bottom: 1vw;
+  justify-content: center;
+  margin-bottom: 1vw;
+  border-bottom: 0.35vh solid var(--borderColor);
+}
+.tpAdp {
+  align-items: center;
+  margin: -0.5vh 0;
+  height: 8vh;
+}
+.dp-wrapper {
+  height: 5vh;
+  width: 6vh;
+  display: flex;
+  color: var(--bodyColor);
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 2.75vh;
+  border: 0.1vw solid var(--borderColor);
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+.btAdp > a{
+  display: none;
+}
+.adProp {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.isOnline{
+  position: absolute;
+  pointer-events: none;
+  width: 1vh;
+  height: 1vh;
+  margin: 2.5vh 0 0 4vh;
+  background-color:rgb(12, 223, 12);
+  border: .35vh solid var(--green);
+  border-radius: 50%;
+}
+.seent{
+  margin: -5vh  0 0 3vh;
+  border-color: firebrick;
+  background-color:var(--red);
+}
+.unseen{
+  font-weight: 600 !important;
+}
+.adInp {
+  outline: none;
+  width: 100%;
+  border-radius: 0.5vw;
+  font-size: 2vh;
+  padding: 0.75vw;
+  margin: auto 0 auto 1vw;
+  border: 0.125vw solid var(--boColor);
+  height: 2vh;
+  transition: all 350ms ease-in-out;
+}
+.adInp:hover,
+.adInp:focus {
+  transition: all 350ms ease-in-out;
+  border: 0.12vw solid var(--blaclk) !important;
+}
+
+.btAdp > .btn-log {
+  width: 100%;
+  height: 2.8vh;
+  font-size: 2.25vh;
+  padding: 1vh;
+  margin: 0 auto;
+}
+
+.postClose{
+border-color: black !important;
+background-color: var(--blaclk) !important;
+}
+.btAdp {
+  display: flex;
+}
+#adInp {
+  overflow: hidden;
+  width: 96.5%;
+  margin: 1vh auto auto auto;
+  height: 10vh;
+}
+#ShowPTD {
+  z-index: 2;
+  top: 12vh;
+  position: fixed;
+  width: 40vw;
+  left: 29.5vw;
+  overflow: hidden;
+  right: 29.5vw;
+}
+.adPtB {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  overflow-y: hidden;
+  top: 0.25vh;
+  background-color: rgba(206, 206, 206, 0.95);
+  bottom: 0;
+}
+.userName {
+  font-size: 2.5vh;
+  margin: 0 0.5vw 0 -1vh;
+}
+.prevImg {
+  height: 100%;
+  width: 50%;
+  object-fit: contain;
+}
+.posTy {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  font-weight: 600;
+  font-size: 2.75vh;
+  margin: 0 1vw;
+}
+.selDr,
+.postSe {
+  width: 10vw;
+}
+.selDr,
+.liAdp {
+  display: flex;
+  border: 0.25vh solid var(--borderColor);
+  border-radius: 1vh;
+  padding: 0.25vh;
+  background-color: var(--white);
+  outline: none;
+  font-size: 2vh;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 350ms ease-in-out;
+}
+
+.selDr:hover {
+  border: 0.25vh solid var(--primaryColor);
+  transition: all 350ms ease-in-out;
+  cursor: pointer;
+}
+.drpAd {
+  transition: all 350ms ease-in-out;
+  color: var(--blaclk);
+}
+.selDr:hover .drpAd {
+  transition: all 350ms ease-in-out;
+  color: var(--primaryColor);
+}
+.selDr > span,
+.liAdp > span {
+  display: flex;
+  height: 3.3vh;
+  align-items: center;
+}
+.iconSe {
+  color: var(--white);
+  display: flex;
+  font-size: 2.75vh;
+  background-color: var(--primaryColor);
+  justify-content: center;
+  margin: auto 1vh auto 0.25vh;
+  align-items: center;
+  border-radius: 50%;
+  border: 0.15vw solid var(--primaryColor);
+}
+.ulAdp {
+  position: absolute;
+  cursor: pointer;
+  display: inline-block;
+  border: 0.35vh solid var(--borderColor);
+  border-radius: 0;
+  width: inherit;
+  list-style-type: none;
+}
+.liAdp {
+  border-radius: 0;
+  border: none;
+  border-top: 0.25vh solid var(--borderColor);
+  transition: all 350ms ease-in-out;
+}
+.liAdp:hover {
+  color: var(--white);
+  background-color: var(--primaryColor);
+  transition: all 350ms ease-in-out;
+}
+.ide {
+  display: none;
+}
+.liAdp:hover .iconSe {
+  background-color: var(--white);
+  border: 0.15vw solid var(--white);
+  color: var(--primaryColor);
+  transition: all 350ms ease-in-out;
+}
+.tag-wrapper {
+  font-size: 2.25vh;
+  display: flex;
+  font-weight: 600;
+}
+.taag {
+  font-weight: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 2vw;
+  width: 80%;
+}
+.tags {
+  justify-content: space-between;
+  display: flex;
+  font-size: 2vh;
+  cursor: pointer;
+  align-items: center;
+}
+.tags > input {
+  margin-right: 0.5vw;
+  width: 3vh;
+  color: var(--primaryColor);
+  height: 3vh;
+  cursor: pointer;
+}
+@media screen and (max-width: 992px) {
+  #ShowPTD {
+    width: 88.5vw;
+    position: fixed;
+    left: 0;
+    top: 10;
+    scroll-behavior: unset;
+    right: 0;
+  }
+  .ulAdp,
+  .selDr {
+    width: 30vw;
+  }
+  .tags {
+    margin: 0.5vw 0;
+  }
+  .taag {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .adPtB {
+    scroll-snap-type: none;
+  }
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .addSD{
+    padding: 2vh  0 !important;
+  }
+  .adInp{
+    padding: 1.5vh;
+    border-radius: 1vh;
+    background-color: transparent;
+
+  }
+  
+  .tpAdp{
+    margin:0 !important;
+  }
+.postdia{
+  font-size: 2vh !important;
+  height: 2vh !important;
+  margin: 1vh auto -6.5vh auto !important;
+  text-decoration: none;
+  width: 40% !important;
+  display: flex !important;
+}
+#ShowPTD{
+border-radius: 0;
+  width: 92%;
+  margin: -4vh auto 0vh auto;
+}
+.adPtB{
+  background-color: var(--white);
+}.dp-wrapper{
+  margin-right: 1vh;
+}
+}
