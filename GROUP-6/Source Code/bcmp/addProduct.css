@@ -1,0 +1,172 @@
+.AddProdDiv {
+  display: flex;
+  width: 1000px;
+  margin: 20px auto 0px auto;
+  flex-direction: column;
+}
+.AddProdForm {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  color: #fff;
+}
+.AddProdForm > form > h2 {
+  margin-bottom: 20px;
+  grid-column: 1/14;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.AddProdForm > form > h2 > div > button {
+  width: 150px;
+  border-radius: 10px;
+}
+.nega {
+  background-color: firebrick;
+  border-color: maroon !important;
+  color: #fff !important;
+}
+.nega:hover {
+  background-color: #fff !important;
+  color: firebrick !important;
+}
+.AddProdForm > form {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+}
+.inputTextAddProd {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 15px 0;
+  align-items: center;
+}
+.inputTextAddProd > input[type="text"],
+.inputTextAddProd > input[type="number"] {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  outline: none;
+  width: 100%;
+  margin: auto 5px;
+  font-size: 15px;
+  border-bottom: 1px solid #fff;
+  transition: all 0.3s ease-in-out;
+  padding: 5px 3px 0 3px;
+}
+.inputTextAddProd label {
+  font-size: 15px;
+  margin-left: 50px;
+}
+.inputTextAddProd input[type="text"]:hover,
+.inputTextAddProd input[type="text"]:focus,
+.inputTextAddProd input[type="number"]:hover,
+.inputTextAddProd input[type="number"]:focus {
+  border-bottom: 1px solid#6c5ce7;
+  transition: all 0.3s ease-in-out;
+}
+.inputTextAddProd input[type="number"] {
+  text-align: center;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px rgb(46, 45, 45) inset !important;
+}
+
+/*Change text in autofill textbox*/
+input:-webkit-autofill {
+  -webkit-text-fill-color: #fff !important;
+}
+.quaHEader {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+}
+.prodAddImg {
+  position: absolute;
+  width: 100%;
+  top: 325px;
+  left: 0;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  right: 0;
+}
+.AddImgContainer {
+  width: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.prodAddImg img {
+  width: 285px;
+  background-color: #fff;
+  border-radius: 12px;
+  display: flex;
+  margin: 0 50px;
+  height: 260px;
+  object-fit: fill;
+}
+.selectAdd {
+  grid-column: 1/7;
+  align-items: flex-start;
+}
+#prodAddGend,
+.selectAdd select {
+  margin: 0 5px;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  cursor: pointer;
+
+  padding: 3px 8px;
+}
+#prodAddGend:hover,
+.selectAdd select:hover {
+  border-bottom: 1px solid #6c5ce7;
+}
+#prodAddGend option,
+.selectAdd select option {
+  background-color: rgb(15, 15, 15);
+}
+.textValue {
+  color: #fff;
+  border: 1px solid #fff;
+}
+.rateDFiiv-wrapper{
+  position: relative;
+  justify-content:center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+}
+
+.rateDFiivText{
+display: flex;
+justify-content:space-between;
+flex-direction: row;
+width: 100%;
+border-bottom: 2px solid white;
+padding-bottom: 10px;
+margin-bottom: 10px;
+}
+.rateLAbelDiov{
+  display: flex;
+flex-direction: row;
+align-items: center;
+}
+.rateDi{
+  border: 1px solid #fff !important;
+  width: 100%;
+
+
+}
